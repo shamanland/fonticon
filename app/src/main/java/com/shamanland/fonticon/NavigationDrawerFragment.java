@@ -90,9 +90,9 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         final int padding = getResources().getDimensionPixelSize(R.dimen.icon_padding);
         final Drawable[] icons = new Drawable[]{
-                FontIconDrawable.inflate(getResources(), R.xml.ic_action_social_chat),
-                FontIconDrawable.inflate(getResources(), R.xml.ic_action_social_cc_bcc),
-                FontIconDrawable.inflate(getResources(), R.xml.ic_action_action_about),
+                FontIconDrawable.inflate(getResources(), R.xml.ic_quote),
+                FontIconDrawable.inflate(getResources(), R.xml.ic_users),
+                FontIconDrawable.inflate(getResources(), R.xml.ic_info),
         };
 
         mDrawerListView = (ListView) inflater.inflate(R.layout.f_navigation_drawer, container, false);
@@ -266,8 +266,12 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         switch (item.getItemId()) {
-            case R.id.action_example:
-                Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            case R.id.action_edit:
+                Toast.makeText(getActivity(), getText(R.string.action_edit), Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.action_delete:
+                Toast.makeText(getActivity(), getText(R.string.action_delete), Toast.LENGTH_SHORT).show();
                 return true;
         }
 
