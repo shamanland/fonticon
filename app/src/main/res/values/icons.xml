@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ic_action_social_chat">&#xe600;</string>
+    <string name="ic_action_social_cc_bcc">&#xe601;</string>
+    <string name="ic_action_content_edit">&#xe602;</string>
+    <string name="ic_action_content_discard">&#xe603;</string>
+    <string name="ic_action_action_about">&#xe604;</string>
+</resources>

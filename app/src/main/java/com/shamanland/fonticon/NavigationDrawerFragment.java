@@ -1,16 +1,17 @@
 package com.shamanland.fonticon;
 
-import android.support.v7.app.ActionBarActivity;;
 import android.app.Activity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +21,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -83,16 +87,22 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.f_navigation_drawer, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
+        final int padding = getResources().getDimensionPixelSize(R.dimen.icon_padding);
+        final Drawable[] icons = new Drawable[]{
+                FontIconDrawable.inflate(getResources(), R.xml.ic_action_social_chat),
+                FontIconDrawable.inflate(getResources(), R.xml.ic_action_social_cc_bcc),
+                FontIconDrawable.inflate(getResources(), R.xml.ic_action_action_about),
+        };
+
+        mDrawerListView = (ListView) inflater.inflate(R.layout.f_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
             }
         });
+
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1,
@@ -101,7 +111,19 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
-                }));
+                }) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView result = (TextView) super.getView(position, convertView, parent);
+
+                result.setCompoundDrawables(icons[position], null, null, null);
+                result.setCompoundDrawablePadding(padding);
+                result.setPadding(padding, 0, 0, 0);
+
+                return result;
+            }
+        });
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
