@@ -111,7 +111,17 @@ public class FontIconDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicWidth() {
+        return mRect.width();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return mRect.height();
+    }
+
+    @Override
     public void draw(Canvas canvas) {
-        canvas.drawText(mText, -mRect.exactCenterX(), -mRect.exactCenterY(), mPaint);
+        canvas.drawText(mText, -mRect.left, -mRect.top, mPaint);
     }
 }
