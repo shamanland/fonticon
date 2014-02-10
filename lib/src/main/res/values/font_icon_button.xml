@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CompoundDrawables">
+        <attr name="iconLeft" format="reference"/>
+        <attr name="iconTop" format="reference"/>
+        <attr name="iconRight" format="reference"/>
+        <attr name="iconBottom" format="reference"/>
+    </declare-styleable>
+</resources>

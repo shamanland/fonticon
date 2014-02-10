@@ -7,4 +7,6 @@
     <dimen name="icon_size">48sp</dimen>
     <dimen name="big_icon_size">64sp</dimen>
     <dimen name="icon_glow_radius">6dp</dimen>
+    <dimen name="wide_padding">40dp</dimen>
+    <dimen name="thin_padding">8dp</dimen>
 </resources>

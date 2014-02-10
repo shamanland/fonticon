@@ -108,8 +108,8 @@ public class MainActivity extends ActionBarActivity implements MenuListener {
                 fragment = new GlowingIconsFragment();
                 break;
 
-            case R.id.animated:
-                fragment = new AnimatedIconsFragment();
+            case R.id.compound:
+                fragment = new CompoundIconsFragment();
                 break;
 
             default:

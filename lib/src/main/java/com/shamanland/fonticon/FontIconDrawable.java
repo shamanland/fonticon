@@ -89,7 +89,8 @@ public class FontIconDrawable extends Drawable {
             a.recycle();
         }
 
-        invalidateSelf();
+        mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+        setBounds(mRect);
     }
 
     public void setText(String text) {
@@ -115,10 +116,8 @@ public class FontIconDrawable extends Drawable {
     }
 
     @Override
-    public void invalidateSelf() {
-        super.invalidateSelf();
-
-        mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+    public boolean getPadding(Rect padding) {
+        return super.getPadding(padding);
     }
 
     @Override

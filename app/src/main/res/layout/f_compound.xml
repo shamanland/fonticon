@@ -1,0 +1,44 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="@dimen/wide_padding"
+        android:paddingRight="@dimen/wide_padding"
+        >
+
+    <com.shamanland.fonticon.FontIconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question"
+            android:drawablePadding="@dimen/thin_padding"
+            app:iconLeft="@xml/ic_android"
+            />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/yes"
+                app:iconLeft="@xml/ic_button_yes"
+                />
+
+        <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/no"
+                app:iconLeft="@xml/ic_button_no"
+                />
+    </LinearLayout>
+</LinearLayout>
