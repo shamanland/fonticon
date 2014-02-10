@@ -11,4 +11,7 @@
     <string name="compound_icons">Compound Icons</string>
     <string name="yes">Yes</string>
     <string name="question">This example demonstrate how to use font-icon in case of compound drawables.\n\nWould you like to use font-icons in your app?</string>
+    <string name="action_like">Like</string>
+    <string name="action_group">Group</string>
+    <string name="action_camera">Camera</string>
 </resources>

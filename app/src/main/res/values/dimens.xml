@@ -3,9 +3,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="navigation_drawer_width">240dp</dimen>
 
-    <dimen name="ab_icon_size">32sp</dimen>
-    <dimen name="icon_size">48sp</dimen>
-    <dimen name="big_icon_size">64sp</dimen>
+    <dimen name="ab_icon_size">24dp</dimen>
+    <dimen name="icon_size">48dp</dimen>
+    <dimen name="big_icon_size">64dp</dimen>
     <dimen name="icon_glow_radius">6dp</dimen>
     <dimen name="wide_padding">40dp</dimen>
     <dimen name="thin_padding">8dp</dimen>

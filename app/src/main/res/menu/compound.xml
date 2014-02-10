@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_like"
+            android:title="@string/action_like"
+            app:showAsAction="always"
+            />
+    <item
+            android:id="@+id/action_group"
+            android:title="@string/action_group"
+            app:showAsAction="always"
+            />
+</menu>
