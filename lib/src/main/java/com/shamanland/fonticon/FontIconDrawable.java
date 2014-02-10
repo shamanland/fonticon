@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Xml;
 import android.view.InflateException;
 
@@ -27,6 +28,9 @@ public class FontIconDrawable extends Drawable {
 
     public static FontIconDrawable inflate(Resources resources, int xmlId) {
         XmlResourceParser parser = resources.getXml(xmlId);
+        if (parser == null) {
+            throw new InflateException();
+        }
 
         try {
             int type;
@@ -69,6 +73,13 @@ public class FontIconDrawable extends Drawable {
         super.inflate(r, parser, attrs);
 
         TypedArray a = r.obtainAttributes(attrs, R.styleable.FontIconDrawable);
+        if (a == null) {
+            if (BuildConfig.DEBUG) {
+                Log.w(FontIconDrawable.class.getSimpleName(), "inflate failed: r.obtainAttributes() returns null");
+            }
+
+            return;
+        }
 
         try {
             mText = a.getString(R.styleable.FontIconDrawable_text);

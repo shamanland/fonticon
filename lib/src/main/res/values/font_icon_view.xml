@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FontIconView">
+        <attr name="overridePressed" format="boolean"/>
+        <attr name="pressedGlowColor" format="color|reference"/>
+        <attr name="pressedGlowRadius" format="dimension|reference"/>
+    </declare-styleable>
+</resources>
