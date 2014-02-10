@@ -14,36 +14,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+    private NavigationDrawerFragment mDrawer;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
     private int mSection;
+    private PlaceholderFragment mContent;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.a_main);
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        if (state == null) {
+            mContent = PlaceholderFragment.newInstance(0);
+            mDrawer = new NavigationDrawerFragment();
 
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+            getSupportFragmentManager().beginTransaction().add(R.id.container, mContent).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.navigation_drawer, mDrawer).commit();
+        } else {
+            mContent = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+            mDrawer = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-        if (state != null) {
             mSection = state.getInt("section");
         }
+
+        mTitle = getTitle();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        // Set up the drawer.
+        mDrawer.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -87,7 +97,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+        if (!mDrawer.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
@@ -95,10 +105,14 @@ public class MainActivity extends ActionBarActivity
             restoreActionBar();
 
             MenuItem edit = menu.findItem(R.id.action_edit);
-            edit.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_edit));
+            if (edit != null) {
+                edit.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_edit));
+            }
 
             MenuItem delete = menu.findItem(R.id.action_delete);
-            delete.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_delete));
+            if (delete != null) {
+                delete.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_delete));
+            }
 
             return true;
         }
@@ -144,8 +158,7 @@ public class MainActivity extends ActionBarActivity
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
             View rootView = inflater.inflate(R.layout.f_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
