@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-icon
         xmlns:android="http://schemas.android.com/apk/res-auto"
-        android:text="@string/ic_users"
+        android:text="@string/ic_android"
         android:textSize="@dimen/icon_size"
         android:textColor="@android:color/white"
         />

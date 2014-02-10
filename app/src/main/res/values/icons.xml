@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ic_quote">&#xe000;</string>
-    <string name="ic_users">&#xe001;</string>
-    <string name="ic_info">&#xe002;</string>
-    <string name="ic_edit">&#xe003;</string>
-    <string name="ic_delete">&#xe004;</string>
+    <string name="ic_android">&#xe000;</string>
+    <string name="ic_like">&#xe001;</string>
+    <string name="ic_github">&#xe002;</string>
+    <string name="ic_delivery">&#xe003;</string>
+    <string name="ic_group">&#xe004;</string>
+    <string name="ic_settings">&#xe005;</string>
+    <string name="ic_gift">&#xe006;</string>
+    <string name="ic_yes">&#xe007;</string>
+    <string name="ic_no">&#xe008;</string>
+    <string name="ic_camera">&#xe009;</string>
 </resources>

@@ -9,7 +9,7 @@
     <com.shamanland.fonticon.FontIconView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ic_quote"
+            android:text="@string/ic_android"
             android:textSize="48sp"
             tools:text="Q"
             />
