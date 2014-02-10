@@ -2,8 +2,9 @@ buildscript {
     repositories {
         mavenCentral()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.8.1'
     }
 }
 
@@ -14,18 +15,18 @@ repositories {
 }
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "18.0.1"
+    compileSdkVersion 19
+    buildToolsVersion '19.0.1'
 
     defaultConfig {
         minSdkVersion 7
-        targetSdkVersion 18
+        targetSdkVersion 19
         versionCode 1
         versionName '0.1'
     }
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:+'
-	compile project(':lib')
+    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile project(':lib')
 }
