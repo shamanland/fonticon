@@ -10,4 +10,7 @@
     <string name="ic_yes">&#xe007;</string>
     <string name="ic_no">&#xe008;</string>
     <string name="ic_camera">&#xe009;</string>
+    <string name="ic_googleplus">&#xe00a;</string>
+    <string name="ic_facebook">&#xe00b;</string>
+    <string name="ic_twitter">&#xe00c;</string>
 </resources>
