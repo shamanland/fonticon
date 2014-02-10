@@ -6,364 +6,50 @@
         >
 
     <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
-        <LinearLayout
+        <com.shamanland.fonticon.FontIconView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:text="@string/ic_like"
+                android:textSize="@dimen/icon_size"
+                tools:text="e"
+                />
 
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="12sp"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="12sp"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="12sp"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="12sp"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="12sp"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.shamanland.fonticon.FontIconView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:text="@string/ic_github"
+                android:textSize="@dimen/icon_size"
+                tools:text="d"
+                />
 
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="24sp"
-                    android:textColor="#f00"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="24sp"
-                    android:textColor="#f00"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="24sp"
-                    android:textColor="#f00"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="24sp"
-                    android:textColor="#f00"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="24sp"
-                    android:textColor="#f00"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.shamanland.fonticon.FontIconView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:text="@string/ic_delivery"
+                android:textSize="@dimen/icon_size"
+                tools:text="i"
+                />
 
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="36sp"
-                    android:textColor="#0f0"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="36sp"
-                    android:textColor="#0f0"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="36sp"
-                    android:textColor="#0f0"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="36sp"
-                    android:textColor="#0f0"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="36sp"
-                    android:textColor="#0f0"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.shamanland.fonticon.FontIconView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:text="@string/ic_android"
+                android:textSize="@dimen/icon_size"
+                tools:text="a"
+                />
 
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="48sp"
-                    android:textColor="#00f"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="48sp"
-                    android:textColor="#00f"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="48sp"
-                    android:textColor="#00f"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="48sp"
-                    android:textColor="#00f"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="48sp"
-                    android:textColor="#00f"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.shamanland.fonticon.FontIconView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="64sp"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="64sp"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="64sp"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="64sp"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="64sp"
-                    android:textColor="@android:color/darker_gray"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@android:color/black"
-                >
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="72sp"
-                    android:textColor="@android:color/white"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="72sp"
-                    android:textColor="@android:color/white"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="72sp"
-                    android:textColor="@android:color/white"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="72sp"
-                    android:textColor="@android:color/white"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="72sp"
-                    android:textColor="@android:color/white"
-                    tools:text="g"
-                    />
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_like"
-                    android:textSize="96sp"
-                    tools:text="e"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_github"
-                    android:textSize="96sp"
-                    tools:text="d"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_delivery"
-                    android:textSize="96sp"
-                    tools:text="i"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_android"
-                    android:textSize="96sp"
-                    tools:text="a"
-                    />
-
-            <com.shamanland.fonticon.FontIconView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ic_gift"
-                    android:textSize="96sp"
-                    tools:text="g"
-                    />
-        </LinearLayout>
+                android:text="@string/ic_gift"
+                android:textSize="@dimen/icon_size"
+                tools:text="g"
+                />
     </LinearLayout>
 </ScrollView>

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_scaledown"
+            android:title="@string/action_scaledown"
+            app:showAsAction="always"
+            />
+    <item
+            android:id="@+id/action_scaleup"
+            android:title="@string/action_scaleup"
+            app:showAsAction="always"
+            />
+</menu>

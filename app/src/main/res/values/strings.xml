@@ -14,4 +14,6 @@
     <string name="action_like">Like</string>
     <string name="action_group">Group</string>
     <string name="action_camera">Camera</string>
+    <string name="action_scaledown">Scale down</string>
+    <string name="action_scaleup">Scale up</string>
 </resources>
