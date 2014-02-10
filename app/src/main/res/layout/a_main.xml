@@ -14,7 +14,7 @@
             />
 
     <FrameLayout
-            android:id="@+id/navigation_drawer"
+            android:id="@+id/menu"
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"

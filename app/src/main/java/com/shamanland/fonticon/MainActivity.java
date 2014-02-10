@@ -1,175 +1,123 @@
 package com.shamanland.fonticon;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.SoundEffectConstants;
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mDrawer;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence mTitle;
-    private int mSection;
-    private PlaceholderFragment mContent;
+public class MainActivity extends ActionBarActivity implements MenuListener {
+    protected DrawerLayout mDrawerLayout;
+    protected ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.a_main);
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         if (state == null) {
-            mContent = PlaceholderFragment.newInstance(0);
-            mDrawer = new NavigationDrawerFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.menu, new MenuFragment())
+                    .commit();
 
-            getSupportFragmentManager().beginTransaction().add(R.id.container, mContent).commit();
-            getSupportFragmentManager().beginTransaction().add(R.id.navigation_drawer, mDrawer).commit();
-        } else {
-            mContent = (PlaceholderFragment) getSupportFragmentManager().findFragmentById(R.id.container);
-            mDrawer = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-
-            mSection = state.getInt("section");
+            mDrawerLayout.openDrawer(GravityCompat.START);
         }
-
-        mTitle = getTitle();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-
-        // Set up the drawer.
-        mDrawer.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
     protected void onSaveInstanceState(Bundle state) {
         super.onSaveInstanceState(state);
-
-        state.putInt("section", mSection);
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+    protected void onPostCreate(Bundle state) {
+        super.onPostCreate(state);
 
-        mSection = position;
-    }
-
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
-    }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mDrawer.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-
-            MenuItem edit = menu.findItem(R.id.action_edit);
-            if (edit != null) {
-                edit.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_edit));
-            }
-
-            MenuItem delete = menu.findItem(R.id.action_delete);
-            if (delete != null) {
-                delete.setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_delete));
-            }
-
-            return true;
-        }
-
-        return super.onCreateOptionsMenu(menu);
+        mDrawerToggle.syncState();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            // override hardware menu key to open/close menu
+            return true;
         }
 
-        public PlaceholderFragment() {
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+
+            mDrawerLayout.playSoundEffect(SoundEffectConstants.CLICK);
+            return true;
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
-            View rootView = inflater.inflate(R.layout.f_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void onMenuClicked(int menuViewId, String menuText, boolean selectionChanged) {
+        if (selectionChanged) {
+            changeContent(menuViewId);
+        } else {
+            // user clicks already selected menu item
+            // custom behavior can be implemented here
         }
 
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
+        getSupportActionBar().setTitle(menuText);
+
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    protected void changeContent(int menuViewId) {
+        final Fragment fragment;
+
+        switch (menuViewId) {
+            case R.id.scaled:
+                fragment = new ScaledIconsFragment();
+                break;
+
+            case R.id.glowing:
+                fragment = new GlowingIconsFragment();
+                break;
+
+            case R.id.animated:
+                fragment = new AnimatedIconsFragment();
+                break;
+
+            default:
+                throw new IllegalStateException();
         }
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit();
     }
 }
