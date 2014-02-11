@@ -26,7 +26,13 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'http://repo.shamanland.com'
+    }
+}
+
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
-    compile project(':lib')
+    compile 'com.shamanland:fonticon:0.0.1-SNAPSHOT'
 }
