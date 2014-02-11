@@ -24,6 +24,4 @@ android {
     }
 }
 
-dependencies {
-    compile 'com.android.support:appcompat-v7:19.0.1'
-}
+apply from: 'https://raw.github.com/shamanland/gradle-mvn-push/master/gradle-mvn-push.gradle'
