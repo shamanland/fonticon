@@ -24,8 +24,8 @@ public class ScaledIconsFragment extends ContentFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.scaled, menu);
 
-        menu.findItem(R.id.action_scaleup).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_scaleup));
-        menu.findItem(R.id.action_scaledown).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_scaledown));
+        menu.findItem(R.id.action_scaleup).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_scaleup));
+        menu.findItem(R.id.action_scaledown).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_scaledown));
     }
 
     @Override

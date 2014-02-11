@@ -1,34 +1,42 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
         android:background="@android:color/white"
         >
 
-    <TextView
+    <com.shamanland.fonticon.FontIconTextView
             android:id="@+id/scaled"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/middle_padding"
             android:text="@string/scaled_icons"
+            android:textSize="@dimen/menu_text_size"
+            android:drawablePadding="@dimen/middle_padding"
+            app:iconLeft="@xml/ic_scaleup"
             />
 
-    <TextView
+    <com.shamanland.fonticon.FontIconTextView
             android:id="@+id/glowing"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/middle_padding"
             android:text="@string/glowing_icons"
+            android:textSize="@dimen/menu_text_size"
+            android:drawablePadding="@dimen/middle_padding"
+            app:iconLeft="@xml/ic_fire"
             />
 
-    <TextView
+    <com.shamanland.fonticon.FontIconTextView
             android:id="@+id/compound"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/middle_padding"
             android:text="@string/compound_icons"
+            android:textSize="@dimen/menu_text_size"
+            android:drawablePadding="@dimen/middle_padding"
+            app:iconLeft="@xml/ic_compound"
             />
-
 </LinearLayout>

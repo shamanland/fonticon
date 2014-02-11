@@ -9,4 +9,6 @@
     <dimen name="icon_glow_radius">6dp</dimen>
     <dimen name="wide_padding">40dp</dimen>
     <dimen name="thin_padding">8dp</dimen>
+    <dimen name="middle_padding">12dp</dimen>
+    <dimen name="menu_text_size">16sp</dimen>
 </resources>

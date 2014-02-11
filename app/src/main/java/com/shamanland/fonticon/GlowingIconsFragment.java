@@ -18,7 +18,7 @@ public class GlowingIconsFragment extends ContentFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.glowing, menu);
 
-        menu.findItem(R.id.action_camera).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_camera));
-        menu.findItem(R.id.action_settings).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_settings));
+        menu.findItem(R.id.action_camera).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_camera));
+        menu.findItem(R.id.action_settings).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_settings));
     }
 }
