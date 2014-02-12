@@ -23,9 +23,16 @@ Gradle dependency
 Branches
 ----
 
-master - example of usage via gradle dependency
+`master` - example of usage via gradle dependency
 
-dev - sources of library
+`dev` - sources of library
+
+Tools
+----
+
+[FontIcon-Prepare][3] - prepares web fonts to be used with this library
+
 
 [1]: http://shomeser.blogspot.com/p/android-fonticon-library.html
 [2]: http://1.bp.blogspot.com/-1m5lo0aOxh0/UvoDZwDgRoI/AAAAAAAAJoU/Ua1QGEIdxzg/s1600/fonticon.gif
+[3]: http://github.com/shamanland/fonticon-prepare/
