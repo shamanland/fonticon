@@ -13,6 +13,8 @@ public class CompoundIconsFragment extends ContentFragment {
     private static final int[] sIcons = {R.string.ic_android, R.string.ic_camera, R.string.ic_compound};
     private static final int[] sColors = {Color.GREEN, Color.YELLOW, Color.CYAN};
 
+    private FontIconDrawable mIcon;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View result = inflater.inflate(R.layout.f_compound, container, false);
@@ -21,7 +23,12 @@ public class CompoundIconsFragment extends ContentFragment {
 
         // left, top, right, bottom
         final Drawable[] drawables = tv.getCompoundDrawables();
-        final FontIconDrawable icon = (FontIconDrawable) drawables[0];
+        mIcon = (FontIconDrawable) drawables[0];
+
+        if (state != null) {
+            mIcon.onRestoreInstanceState(state.getParcelable("icon"));
+            tv.updateCompoundDrawables();
+        }
 
         tv.setOnClickListener(new View.OnClickListener() {
             int index;
@@ -30,8 +37,8 @@ public class CompoundIconsFragment extends ContentFragment {
             public void onClick(View v) {
                 index = (index + 1) % sIcons.length;
 
-                icon.setText(getString(sIcons[index]));
-                icon.setTextColor(sColors[index]);
+                mIcon.setText(getString(sIcons[index]));
+                mIcon.setTextColor(sColors[index]);
 
                 // use FontIconTextView method
                 tv.updateCompoundDrawables();
@@ -44,6 +51,13 @@ public class CompoundIconsFragment extends ContentFragment {
         });
 
         return result;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+
+        state.putParcelable("icon", mIcon != null ? mIcon.onSaveInstanceState() : null);
     }
 
     @Override
