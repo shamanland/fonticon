@@ -104,14 +104,30 @@ public class FontIconDrawable extends Drawable {
         }
     }
 
+    public TextPaint getPaint() {
+        return mPaint;
+    }
+
+    public String getText() {
+        return mText;
+    }
+
     public void setText(String text) {
         mText = text != null ? text : "";
         updateBounds();
     }
 
+    public float getTextSize() {
+        return mPaint.getTextSize();
+    }
+
     public void setTextSize(float textSize) {
         mPaint.setTextSize(textSize);
         updateBounds();
+    }
+
+    public int getTextColor() {
+        return mPaint.getColor();
     }
 
     public void setTextColor(int color) {
