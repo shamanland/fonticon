@@ -17,7 +17,7 @@ Gradle dependency
     }
 
     dependencies {
-        compile 'com.shamanland:fonticon:0.0.1-SNAPSHOT'
+        compile 'com.shamanland:fonticon:0.1.+
     }
 
 Branches
