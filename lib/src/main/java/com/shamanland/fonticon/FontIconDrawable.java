@@ -10,11 +10,15 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
+import android.view.AbsSavedState;
 import android.view.InflateException;
+import android.view.View;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -25,6 +29,7 @@ public class FontIconDrawable extends Drawable {
     private String mText;
     private TextPaint mPaint;
     private Rect mRect;
+    private boolean mRestoring;
     private boolean mBoundsChanged;
 
     public static FontIconDrawable inflate(Resources resources, int xmlId) {
@@ -114,7 +119,10 @@ public class FontIconDrawable extends Drawable {
 
     public void setText(String text) {
         mText = text != null ? text : "";
-        updateBounds();
+
+        if (!mRestoring) {
+            updateBounds();
+        }
     }
 
     public float getTextSize() {
@@ -123,7 +131,10 @@ public class FontIconDrawable extends Drawable {
 
     public void setTextSize(float textSize) {
         mPaint.setTextSize(textSize);
-        updateBounds();
+
+        if (!mRestoring) {
+            updateBounds();
+        }
     }
 
     public int getTextColor() {
@@ -132,7 +143,10 @@ public class FontIconDrawable extends Drawable {
 
     public void setTextColor(int color) {
         mPaint.setColor(color);
-        invalidateSelf();
+
+        if (!mRestoring) {
+            invalidateSelf();
+        }
     }
 
     @Override
@@ -169,5 +183,74 @@ public class FontIconDrawable extends Drawable {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawText(mText, -mRect.left, -mRect.top, mPaint);
+    }
+
+    public Parcelable onSaveInstanceState() {
+        SavedState ss = new SavedState(AbsSavedState.EMPTY_STATE);
+
+        ss.text = getText();
+        ss.textColor = getTextColor();
+        ss.textSize = getTextSize();
+
+        return ss;
+    }
+
+    public void onRestoreInstanceState(Parcelable savedState) {
+        if (savedState instanceof SavedState) {
+            SavedState ss = (SavedState) savedState;
+
+            try {
+                mRestoring = true;
+
+                setText(ss.text);
+                setTextColor(ss.textColor);
+                setTextSize(ss.textSize);
+            } finally {
+                mRestoring = false;
+            }
+
+            updateBounds();
+
+            if (!mBoundsChanged) {
+                invalidateSelf();
+            }
+        }
+    }
+
+    static class SavedState extends View.BaseSavedState {
+        String text;
+        int textColor;
+        float textSize;
+
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+
+            out.writeString(text);
+            out.writeInt(textColor);
+            out.writeFloat(textSize);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+
+        protected SavedState(Parcel in) {
+            super(in);
+
+            text = in.readString();
+            textColor = in.readInt();
+            textSize = in.readFloat();
+        }
     }
 }
