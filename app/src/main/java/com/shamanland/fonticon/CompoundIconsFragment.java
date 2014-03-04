@@ -1,5 +1,7 @@
 package com.shamanland.fonticon;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -8,9 +10,39 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class CompoundIconsFragment extends ContentFragment {
+    private static final int[] sIcons = {R.string.ic_android, R.string.ic_camera, R.string.ic_compound};
+    private static final int[] sColors = {Color.GREEN, Color.YELLOW, Color.CYAN};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View result = inflater.inflate(R.layout.f_compound, container, false);
+
+        final FontIconTextView tv = (FontIconTextView) result.findViewById(R.id.example_text);
+
+        // left, top, right, bottom
+        final Drawable[] drawables = tv.getCompoundDrawables();
+        final FontIconDrawable icon = (FontIconDrawable) drawables[0];
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            int index;
+
+            @Override
+            public void onClick(View v) {
+                index = (index + 1) % sIcons.length;
+
+                icon.setText(getString(sIcons[index]));
+                icon.setTextColor(sColors[index]);
+
+                // use FontIconTextView method
+                tv.updateCompoundDrawables();
+
+                // or CompoundDrawables.update(TextView) if you don't want to cast FontIconTextView
+
+                // or manually
+                // tv.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
+            }
+        });
+
         return result;
     }
 
