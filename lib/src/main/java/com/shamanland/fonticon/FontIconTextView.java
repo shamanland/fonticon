@@ -24,4 +24,8 @@ public class FontIconTextView extends TextView {
             CompoundDrawables.init(context, attrs, this);
         }
     }
+
+    public void updateCompoundDrawables() {
+        CompoundDrawables.update(this);
+    }
 }

@@ -8,12 +8,22 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
 
+import static com.shamanland.fonticon.BuildConfig.DEBUG;
+
 public class CompoundDrawables {
     public static boolean init(Context context, AttributeSet attrs, TextView view) {
+        if (view == null) {
+            if (DEBUG) {
+                Log.e(FontIconView.class.getSimpleName(), "init: view is null");
+            }
+
+            return false;
+        }
+
         Resources.Theme theme = context.getTheme();
         if (theme == null) {
-            if (BuildConfig.DEBUG) {
-                Log.w(FontIconView.class.getSimpleName(), "init failed: context.getTheme() returns null");
+            if (DEBUG) {
+                Log.w(FontIconView.class.getSimpleName(), "init: context.getTheme() returns null");
             }
 
             return false;
@@ -21,8 +31,8 @@ public class CompoundDrawables {
 
         TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.CompoundDrawables, 0, 0);
         if (a == null) {
-            if (BuildConfig.DEBUG) {
-                Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes() returns null");
+            if (DEBUG) {
+                Log.w(FontIconView.class.getSimpleName(), "init: theme.obtainStyledAttributes() returns null");
             }
 
             return false;
@@ -57,5 +67,20 @@ public class CompoundDrawables {
         }
 
         return true;
+    }
+
+    public static void update(TextView view) {
+        if (view == null) {
+            if (DEBUG) {
+                Log.e(FontIconView.class.getSimpleName(), "update: view is null");
+            }
+
+            return;
+        }
+
+        Drawable[] drawables = view.getCompoundDrawables();
+        if (drawables != null) {
+            view.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
+        }
     }
 }

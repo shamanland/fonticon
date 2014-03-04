@@ -25,6 +25,7 @@ public class FontIconDrawable extends Drawable {
     private String mText;
     private TextPaint mPaint;
     private Rect mRect;
+    private boolean mBoundsChanged;
 
     public static FontIconDrawable inflate(Resources resources, int xmlId) {
         XmlResourceParser parser = resources.getXml(xmlId);
@@ -89,12 +90,32 @@ public class FontIconDrawable extends Drawable {
             a.recycle();
         }
 
+        updateBounds();
+    }
+
+    private void updateBounds() {
+        mBoundsChanged = false;
+
         mPaint.getTextBounds(mText, 0, mText.length(), mRect);
         setBounds(mRect);
+
+        if (mBoundsChanged) {
+            invalidateSelf();
+        }
     }
 
     public void setText(String text) {
         mText = text != null ? text : "";
+        updateBounds();
+    }
+
+    public void setTextSize(float textSize) {
+        mPaint.setTextSize(textSize);
+        updateBounds();
+    }
+
+    public void setTextColor(int color) {
+        mPaint.setColor(color);
         invalidateSelf();
     }
 
@@ -115,9 +136,8 @@ public class FontIconDrawable extends Drawable {
         return PixelFormat.TRANSLUCENT;
     }
 
-    @Override
-    public boolean getPadding(Rect padding) {
-        return super.getPadding(padding);
+    protected void onBoundsChange(Rect bounds) {
+        mBoundsChanged = true;
     }
 
     @Override

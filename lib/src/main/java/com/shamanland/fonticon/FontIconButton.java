@@ -24,4 +24,8 @@ public class FontIconButton extends Button {
             CompoundDrawables.init(context, attrs, this);
         }
     }
+
+    public void updateCompoundDrawables() {
+        CompoundDrawables.update(this);
+    }
 }
