@@ -34,5 +34,5 @@ repositories {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
-    compile 'com.shamanland:fonticon:0.0.1-SNAPSHOT'
+    compile 'com.shamanland:fonticon:0.1.+'
 }
