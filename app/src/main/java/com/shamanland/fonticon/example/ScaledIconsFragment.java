@@ -1,4 +1,4 @@
-package com.shamanland.fonticon;
+package com.shamanland.fonticon.example;
 
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.shamanland.fonticon.FontIconDrawable;
 
 public class ScaledIconsFragment extends ContentFragment {
     private ViewGroup mContainer;

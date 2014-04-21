@@ -1,18 +1,5 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.8.1'
-    }
-}
-
+apply plugin: 'android-sdk-manager'
 apply plugin: 'android'
-
-repositories {
-    mavenCentral()
-}
 
 android {
     compileSdkVersion 19

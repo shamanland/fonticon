@@ -1,4 +1,4 @@
-package com.shamanland.fonticon;
+package com.shamanland.fonticon.example;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.shamanland.fonticon.FontIconDrawable;
+import com.shamanland.fonticon.FontIconTextView;
 
 public class CompoundIconsFragment extends ContentFragment {
     private static final int[] sIcons = {R.string.ic_android, R.string.ic_camera, R.string.ic_compound};
