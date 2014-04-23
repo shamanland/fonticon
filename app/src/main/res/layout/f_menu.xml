@@ -15,6 +15,7 @@
             android:text="@string/scaled_icons"
             android:textSize="@dimen/menu_text_size"
             android:textColor="@color/pressed_menu"
+            android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
             app:iconLeft="@xml/ic_scaleup"
             />
@@ -27,6 +28,7 @@
             android:text="@string/glowing_icons"
             android:textSize="@dimen/menu_text_size"
             android:textColor="@color/pressed_menu"
+            android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
             app:iconLeft="@xml/ic_fire"
             />
@@ -39,6 +41,7 @@
             android:text="@string/compound_icons"
             android:textSize="@dimen/menu_text_size"
             android:textColor="@color/pressed_menu"
+            android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
             app:iconLeft="@xml/ic_compound"
             />
