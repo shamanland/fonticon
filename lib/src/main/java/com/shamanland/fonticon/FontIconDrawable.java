@@ -264,7 +264,7 @@ public class FontIconDrawable extends Drawable {
                 mRestoring = false;
             }
 
-            updatePaint();
+            updatePaint(true, false);
         }
     }
 
