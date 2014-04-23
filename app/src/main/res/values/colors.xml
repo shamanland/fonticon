@@ -6,4 +6,6 @@
     <color name="green_170">#0a0</color>
     <color name="red_221">#d00</color>
     <color name="ab_icon">#dfff</color>
+    <color name="holo_blue_bright">#ff33b5e5</color>
+    <color name="very_light_gray">#eee</color>
 </resources>

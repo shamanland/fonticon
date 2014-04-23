@@ -1,4 +1,4 @@
-package com.shamanland.fonticon;
+package com.shamanland.fonticon.example;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.shamanland.fonticon.FontIconDrawable;
 
 public class GlowingIconsFragment extends ContentFragment {
     @Override

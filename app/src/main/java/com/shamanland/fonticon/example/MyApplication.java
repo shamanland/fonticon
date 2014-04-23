@@ -1,6 +1,8 @@
-package com.shamanland.fonticon;
+package com.shamanland.fonticon.example;
 
 import android.app.Application;
+
+import com.shamanland.fonticon.FontIconTypefaceHolder;
 
 public class MyApplication extends Application {
     @Override

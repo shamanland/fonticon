@@ -1,55 +1,75 @@
-<ScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-    <LinearLayout
-            android:id="@+id/container"
+    <SeekBar
+            android:id="@+id/seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:max="300"
+            />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             >
 
-        <com.shamanland.fonticon.FontIconView
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ic_like"
-                android:textSize="@dimen/icon_size"
-                tools:text="e"
-                />
+                android:orientation="vertical"
+                >
 
-        <com.shamanland.fonticon.FontIconView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ic_github"
-                android:textSize="@dimen/icon_size"
-                tools:text="d"
-                />
+            <com.shamanland.fonticon.FontIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/ic_like"
+                    android:textSize="@dimen/icon_size"
+                    tools:text="e"
+                    />
 
-        <com.shamanland.fonticon.FontIconView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ic_delivery"
-                android:textSize="@dimen/icon_size"
-                tools:text="i"
-                />
+            <com.shamanland.fonticon.FontIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/ic_github"
+                    android:textSize="@dimen/icon_size"
+                    tools:text="d"
+                    />
 
-        <com.shamanland.fonticon.FontIconView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ic_android"
-                android:textSize="@dimen/icon_size"
-                tools:text="a"
-                />
+            <com.shamanland.fonticon.FontIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/ic_delivery"
+                    android:textSize="@dimen/icon_size"
+                    tools:text="i"
+                    />
 
-        <com.shamanland.fonticon.FontIconView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ic_gift"
-                android:textSize="@dimen/icon_size"
-                tools:text="g"
-                />
-    </LinearLayout>
-</ScrollView>
+            <com.shamanland.fonticon.FontIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/ic_android"
+                    android:textSize="@dimen/icon_size"
+                    tools:text="a"
+                    />
+
+            <com.shamanland.fonticon.FontIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/ic_gift"
+                    android:textSize="@dimen/icon_size"
+                    tools:text="g"
+                    />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

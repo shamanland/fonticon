@@ -1,4 +1,4 @@
-package com.shamanland.fonticon;
+package com.shamanland.fonticon.example;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,11 +9,16 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.shamanland.fonticon.FontIconDrawable;
+import com.shamanland.fonticon.FontIconTextView;
+
 public class CompoundIconsFragment extends ContentFragment {
     private static final int[] sIcons = {R.string.ic_android, R.string.ic_camera, R.string.ic_compound};
-    private static final int[] sColors = {Color.GREEN, Color.YELLOW, Color.CYAN};
+    private static final int[] sColors = {Color.GREEN, 0xffff8000, Color.MAGENTA
+    };
 
-    private FontIconDrawable mIcon;
+    protected FontIconDrawable mIcon;
+    protected int mColorIndex;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
@@ -28,17 +33,17 @@ public class CompoundIconsFragment extends ContentFragment {
         if (state != null) {
             mIcon.onRestoreInstanceState(state.getParcelable("icon"));
             tv.updateCompoundDrawables();
+
+            mColorIndex = state.getInt("color.index");
         }
 
         tv.setOnClickListener(new View.OnClickListener() {
-            int index;
-
             @Override
             public void onClick(View v) {
-                index = (index + 1) % sIcons.length;
+                mColorIndex = (mColorIndex + 1) % sIcons.length;
 
-                mIcon.setText(getString(sIcons[index]));
-                mIcon.setTextColor(sColors[index]);
+                mIcon.setText(getString(sIcons[mColorIndex]));
+                mIcon.setTextColor(sColors[mColorIndex]);
 
                 // use FontIconTextView method
                 tv.updateCompoundDrawables();
@@ -58,6 +63,7 @@ public class CompoundIconsFragment extends ContentFragment {
         super.onSaveInstanceState(state);
 
         state.putParcelable("icon", mIcon != null ? mIcon.onSaveInstanceState() : null);
+        state.putInt("color.index", mColorIndex);
     }
 
     @Override
