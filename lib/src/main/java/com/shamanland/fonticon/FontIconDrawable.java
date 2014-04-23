@@ -1,10 +1,10 @@
 package com.shamanland.fonticon;
 
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -27,6 +27,9 @@ import java.io.IOException;
 
 public class FontIconDrawable extends Drawable {
     private String mText;
+    private ColorStateList mTextColor;
+    private float mTextSize;
+
     private TextPaint mPaint;
     private Rect mRect;
     private boolean mRestoring;
@@ -89,24 +92,64 @@ public class FontIconDrawable extends Drawable {
 
         try {
             mText = a.getString(R.styleable.FontIconDrawable_text);
-            mPaint.setColor(a.getColor(R.styleable.FontIconDrawable_textColor, Color.BLACK));
-            mPaint.setTextSize(a.getDimension(R.styleable.FontIconDrawable_textSize, 9f));
+            mTextColor = a.getColorStateList(R.styleable.FontIconDrawable_textColor);
+            mTextSize = a.getDimension(R.styleable.FontIconDrawable_textSize, 9f);
         } finally {
             a.recycle();
         }
 
-        updateBounds();
+        updatePaint(true, true);
     }
 
-    private void updateBounds() {
-        mBoundsChanged = false;
+    private void updatePaint() {
+        updatePaint(false, false);
+    }
 
-        mPaint.getTextBounds(mText, 0, mText.length(), mRect);
-        setBounds(mRect);
+    private void updatePaint(boolean updateBounds, boolean forcedInvalidate) {
+        boolean colorChanged = updatePaintColor(getState());
 
-        if (mBoundsChanged) {
+        boolean textSizeChanged = false;
+
+        float oldTextSize = mPaint.getTextSize();
+        float newTextSize = mTextSize;
+
+        if (Float.compare(oldTextSize, newTextSize) != 0) {
+            mPaint.setTextSize(newTextSize);
+            textSizeChanged = true;
+        }
+
+        if (textSizeChanged || updateBounds) {
+            mBoundsChanged = false;
+
+            mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+            setBounds(mRect);
+        }
+
+        if (colorChanged || forcedInvalidate || mBoundsChanged) {
             invalidateSelf();
         }
+    }
+
+    private boolean updatePaintColor(int[] state) {
+        int oldColor = mPaint.getColor();
+        int newColor = mTextColor.getColorForState(state, mTextColor.getDefaultColor());
+
+        if (oldColor != newColor) {
+            mPaint.setColor(newColor);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isStateful() {
+        return mTextColor.isStateful();
+    }
+
+    @Override
+    protected boolean onStateChange(int[] state) {
+        return updatePaintColor(state);
     }
 
     public TextPaint getPaint() {
@@ -121,31 +164,43 @@ public class FontIconDrawable extends Drawable {
         mText = text != null ? text : "";
 
         if (!mRestoring) {
-            updateBounds();
+            updatePaint(true, false);
         }
     }
 
     public float getTextSize() {
-        return mPaint.getTextSize();
+        return mTextSize;
     }
 
     public void setTextSize(float textSize) {
-        mPaint.setTextSize(textSize);
+        mTextSize = textSize;
 
         if (!mRestoring) {
-            updateBounds();
+            updatePaint();
         }
     }
 
     public int getTextColor() {
-        return mPaint.getColor();
+        return mTextColor.getColorForState(getState(), mTextColor.getDefaultColor());
     }
 
     public void setTextColor(int color) {
-        mPaint.setColor(color);
+        mTextColor = ColorStateList.valueOf(color);
 
         if (!mRestoring) {
-            invalidateSelf();
+            updatePaint();
+        }
+    }
+
+    public ColorStateList getTextColorStateList() {
+        return mTextColor;
+    }
+
+    public void setTextColorStateList(ColorStateList color) {
+        mTextColor = color;
+
+        if (!mRestoring) {
+            updatePaint();
         }
     }
 
@@ -189,7 +244,7 @@ public class FontIconDrawable extends Drawable {
         SavedState ss = new SavedState(AbsSavedState.EMPTY_STATE);
 
         ss.text = getText();
-        ss.textColor = getTextColor();
+        ss.textColor = getTextColorStateList();
         ss.textSize = getTextSize();
 
         return ss;
@@ -203,23 +258,19 @@ public class FontIconDrawable extends Drawable {
                 mRestoring = true;
 
                 setText(ss.text);
-                setTextColor(ss.textColor);
+                setTextColorStateList(ss.textColor);
                 setTextSize(ss.textSize);
             } finally {
                 mRestoring = false;
             }
 
-            updateBounds();
-
-            if (!mBoundsChanged) {
-                invalidateSelf();
-            }
+            updatePaint();
         }
     }
 
     static class SavedState extends View.BaseSavedState {
         String text;
-        int textColor;
+        ColorStateList textColor;
         float textSize;
 
         public SavedState(Parcelable superState) {
@@ -231,7 +282,7 @@ public class FontIconDrawable extends Drawable {
             super.writeToParcel(out, flags);
 
             out.writeString(text);
-            out.writeInt(textColor);
+            out.writeParcelable(textColor, flags);
             out.writeFloat(textSize);
         }
 
@@ -249,7 +300,7 @@ public class FontIconDrawable extends Drawable {
             super(in);
 
             text = in.readString();
-            textColor = in.readInt();
+            textColor = in.readParcelable(null);
             textSize = in.readFloat();
         }
     }

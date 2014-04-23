@@ -14,7 +14,8 @@ import com.shamanland.fonticon.FontIconTextView;
 
 public class CompoundIconsFragment extends ContentFragment {
     private static final int[] sIcons = {R.string.ic_android, R.string.ic_camera, R.string.ic_compound};
-    private static final int[] sColors = {Color.GREEN, Color.YELLOW, Color.CYAN};
+    private static final int[] sColors = {Color.GREEN, 0xffff8000, Color.MAGENTA
+    };
 
     private FontIconDrawable mIcon;
 
