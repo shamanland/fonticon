@@ -5,7 +5,7 @@ Android FontIcon is simple library which use font-based icons in Android.
 
 Permament link to [project's page][1].
 
-![Example Image][2]
+Look this [example app][2]
 
 Gradle dependency
 ----
@@ -109,10 +109,10 @@ Tools
 [FontIcon-Prepare][3] - prepares web fonts to be used with this library
 
 
-[1]: http://shomeser.blogspot.com/p/android-fonticon-library.html
-[2]: http://1.bp.blogspot.com/-1m5lo0aOxh0/UvoDZwDgRoI/AAAAAAAAJoU/Ua1QGEIdxzg/s1600/fonticon.gif
+[1]: http://blog.shamanland.com/p/android-fonticon-library.html
+[2]: https://docs.google.com/file/d/0Bwh0SNLPmjQBbXJVd3c3S2hfVTg/preview
 [3]: http://github.com/shamanland/fonticon-prepare/
-[4]: http://fontastic.me/howto/
+[4]: http://fontastic.me/howto
 [5]: http://blog.shamanland.com/2013/11/how-to-use-icon-fonts-in-android.html
 [6]: http://github.com/shamanland/fonticon/blob/dev/app/src/main/res/xml/ic_android.xml
 [7]: http://github.com/shamanland/fonticon/blob/dev/app/src/main/res/layout/f_glowing.xml
