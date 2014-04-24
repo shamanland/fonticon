@@ -134,4 +134,10 @@ public class FontIconView extends CheckedTextView {
             setShadowLayer(mPressedOldShadowRadius, mPressedOldShadowDx, mPressedOldShadowDy, mPressedOldShadowColor);
         }
     }
+
+    @Override
+    public boolean performClick() {
+        toggle();
+        return super.performClick();
+    }
 }

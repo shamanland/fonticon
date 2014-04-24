@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- http://fontastic.me/app -->
     <string name="ic_android">&#xe000;</string>
-    <string name="ic_like">&#xe001;</string>
-    <string name="ic_github">&#xe002;</string>
-    <string name="ic_delivery">&#xe003;</string>
-    <string name="ic_group">&#xe004;</string>
-    <string name="ic_settings">&#xe005;</string>
-    <string name="ic_gift">&#xe006;</string>
-    <string name="ic_yes">&#xe007;</string>
-    <string name="ic_no">&#xe008;</string>
-    <string name="ic_camera">&#xe009;</string>
-    <string name="ic_googleplus">&#xe00a;</string>
-    <string name="ic_facebook">&#xe00b;</string>
-    <string name="ic_twitter">&#xe00c;</string>
-    <string name="ic_scaleup">&#xe00d;</string>
-    <string name="ic_compound">&#xe00e;</string>
-    <string name="ic_fire">&#xe00f;</string>
-    <string name="ic_scaledown">&#xe010;</string>
+    <string name="ic_github">&#xe001;</string>
+    <string name="ic_delivery">&#xe002;</string>
+    <string name="ic_group">&#xe003;</string>
+    <string name="ic_settings">&#xe004;</string>
+    <string name="ic_gift">&#xe005;</string>
+    <string name="ic_yes">&#xe006;</string>
+    <string name="ic_no">&#xe007;</string>
+    <string name="ic_camera">&#xe008;</string>
+    <string name="ic_googleplus">&#xe009;</string>
+    <string name="ic_facebook">&#xe00a;</string>
+    <string name="ic_twitter">&#xe00b;</string>
+    <string name="ic_scaleup">&#xe00c;</string>
+    <string name="ic_compound">&#xe00d;</string>
+    <string name="ic_fire">&#xe00e;</string>
+    <string name="ic_scaledown">&#xe00f;</string>
+    <string name="ic_like">&#xe010;</string>
+    <string name="ic_lamp">&#xe011;</string>
 </resources>

@@ -16,4 +16,8 @@
     <string name="action_camera">Camera</string>
     <string name="action_scaledown">Scale down</string>
     <string name="action_scaleup">Scale up</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="pressed_icon">Selector for \'pressed\' state</string>
+    <string name="checked_icon">Selector for \'pressed\' and \'checked\' state</string>
 </resources>
