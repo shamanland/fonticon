@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.CheckedTextView;
@@ -139,5 +141,55 @@ public class FontIconView extends CheckedTextView {
     public boolean performClick() {
         toggle();
         return super.performClick();
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        // Force our ancestor class to save its state
+        setFreezesText(true);
+        Parcelable superState = super.onSaveInstanceState();
+
+        SavedState ss = new SavedState(superState);
+
+        ss.checked = isChecked();
+        return ss;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+
+        super.onRestoreInstanceState(ss.getSuperState());
+        setChecked(ss.checked);
+        requestLayout();
+    }
+
+    static class SavedState extends BaseSavedState {
+        boolean checked;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeValue(checked);
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+
+        private SavedState(Parcel in) {
+            super(in);
+            checked = (Boolean) in.readValue(null);
+        }
     }
 }

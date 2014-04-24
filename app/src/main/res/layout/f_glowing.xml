@@ -74,6 +74,7 @@
             />
 
     <com.shamanland.fonticon.FontIconView
+            android:id="@android:id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/icon_glow_radius"
