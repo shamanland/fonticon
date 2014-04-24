@@ -8,48 +8,82 @@
         android:gravity="center_horizontal"
         >
 
-    <com.shamanland.fonticon.FontIconView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/icon_glow_radius"
-            android:text="@string/ic_googleplus"
-            android:textSize="@dimen/big_icon_size"
-            android:textColor="@color/pressed_googleplus"
-            android:clickable="true"
-            app:overridePressed="true"
-            app:pressedGlowColor="@color/googleplus"
-            app:pressedGlowRadius="@dimen/icon_glow_radius"
-            tools:text="g+"
-            tools:textColor="@color/googleplus"
+            android:layout_marginTop="10dp"
+            android:text="@string/pressed_icon"
+            />
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <com.shamanland.fonticon.FontIconView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_glow_radius"
+                android:text="@string/ic_googleplus"
+                android:textSize="@dimen/big_icon_size"
+                android:textColor="@color/pressed_googleplus"
+                android:clickable="true"
+                app:overridePressed="true"
+                app:pressedGlowColor="@color/googleplus"
+                app:pressedGlowRadius="@dimen/icon_glow_radius"
+                tools:text="g+"
+                tools:textColor="@color/googleplus"
+                />
+
+        <com.shamanland.fonticon.FontIconView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_glow_radius"
+                android:text="@string/ic_facebook"
+                android:textSize="@dimen/big_icon_size"
+                android:textColor="@color/pressed_facebook"
+                android:clickable="true"
+                app:overridePressed="true"
+                app:pressedGlowColor="@color/facebook"
+                app:pressedGlowRadius="@dimen/icon_glow_radius"
+                tools:text="f"
+                tools:textColor="@color/facebook"
+                />
+
+        <com.shamanland.fonticon.FontIconView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_glow_radius"
+                android:text="@string/ic_twitter"
+                android:textSize="@dimen/big_icon_size"
+                android:textColor="@color/pressed_twitter"
+                android:clickable="true"
+                app:overridePressed="true"
+                app:pressedGlowColor="@color/twitter"
+                app:pressedGlowRadius="@dimen/icon_glow_radius"
+                tools:text="t"
+                tools:textColor="@color/twitter"
+                />
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checked_icon"
             />
 
     <com.shamanland.fonticon.FontIconView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/icon_glow_radius"
-            android:text="@string/ic_facebook"
+            android:text="@string/ic_lamp"
             android:textSize="@dimen/big_icon_size"
-            android:textColor="@color/pressed_facebook"
+            android:textColor="@color/selector_lamp"
             android:clickable="true"
             app:overridePressed="true"
-            app:pressedGlowColor="@color/facebook"
+            app:pressedGlowColor="@color/yellow"
             app:pressedGlowRadius="@dimen/icon_glow_radius"
-            tools:text="f"
-            tools:textColor="@color/facebook"
-            />
-
-    <com.shamanland.fonticon.FontIconView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/icon_glow_radius"
-            android:text="@string/ic_twitter"
-            android:textSize="@dimen/big_icon_size"
-            android:textColor="@color/pressed_twitter"
-            android:clickable="true"
-            app:overridePressed="true"
-            app:pressedGlowColor="@color/twitter"
-            app:pressedGlowRadius="@dimen/icon_glow_radius"
-            tools:text="t"
-            tools:textColor="@color/twitter"
+            tools:text="a"
             />
 </LinearLayout>

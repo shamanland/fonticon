@@ -8,4 +8,8 @@
     <color name="ab_icon">#dfff</color>
     <color name="holo_blue_bright">#ff33b5e5</color>
     <color name="very_light_gray">#eee</color>
+    <color name="yellow">#fe0</color>
+    <color name="dark_yellow">#fd0</color>
+    <color name="darker_yellow">#fc0</color>
+    <color name="light_orange">#fb0</color>
 </resources>
