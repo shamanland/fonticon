@@ -17,7 +17,7 @@ Gradle dependency
     }
 
     dependencies {
-        compile 'com.shamanland:fonticon:0.1.2'
+        compile 'com.shamanland:fonticon:0.1.3'
     }
 
 Usage
@@ -95,13 +95,6 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
             app:pressedGlowColor="@color/googleplus"
             app:pressedGlowRadius="@dimen/icon_glow_radius"
             />
-
-Branches
-----
-
-`master` - example of usage via gradle dependency
-
-`dev` - sources of library
 
 Tools
 ----
