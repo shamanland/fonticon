@@ -4,5 +4,5 @@
         app:text="@string/ic_fire"
         app:textSize="@dimen/ab_icon_size"
         app:textColor="@color/pressed_menu"
-        app:fitting="match_text_size"
+        app:fitToTextSize="true"
         />

@@ -10,11 +10,7 @@
         <attr name="text" format="string|reference"/>
         <attr name="textColor" format="color|reference"/>
         <attr name="textSize" format="dimension|reference"/>
-        <attr name="fitting" format="enum">
-            <enum name="none" value="0"/>
-            <enum name="match_width_height" value="1"/>
-            <enum name="match_text_size" value="2"/>
-        </attr>
+        <attr name="fitToTextSize" format="boolean|reference"/>
     </declare-styleable>
     <declare-styleable name="FontIconView">
         <attr name="overridePressed" format="boolean"/>
