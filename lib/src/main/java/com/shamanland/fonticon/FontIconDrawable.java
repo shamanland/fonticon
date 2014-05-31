@@ -26,9 +26,14 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 public class FontIconDrawable extends Drawable {
+    public static final int FITTING_NONE = 0;
+    public static final int FITTING_MATCH_WIDTH_HEIGHT = 1;
+    public static final int FITTING_MATCH_TEXT_SIZE = 2;
+
     private String mText;
     private ColorStateList mTextColor;
     private float mTextSize;
+    private int mFitWidth;
 
     private TextPaint mPaint;
     private Rect mRect;
@@ -94,6 +99,7 @@ public class FontIconDrawable extends Drawable {
             mText = a.getString(R.styleable.FontIconDrawable_text);
             mTextColor = a.getColorStateList(R.styleable.FontIconDrawable_textColor);
             mTextSize = a.getDimension(R.styleable.FontIconDrawable_textSize, 9f);
+            mFitWidth = a.getInt(R.styleable.FontIconDrawable_fitting, FITTING_NONE);
         } finally {
             a.recycle();
         }
@@ -122,11 +128,41 @@ public class FontIconDrawable extends Drawable {
             mBoundsChanged = false;
 
             mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+
+            switch (mFitWidth) {
+                case FITTING_MATCH_WIDTH_HEIGHT:
+                    fitRect(mRect, Math.max(mRect.width(), mRect.height()));
+                    break;
+
+                case FITTING_MATCH_TEXT_SIZE: {
+                    fitRect(mRect, (int) mTextSize);
+                    break;
+                }
+            }
+
             setBounds(mRect);
         }
 
         if (colorChanged || forcedInvalidate || mBoundsChanged) {
             invalidateSelf();
+        }
+    }
+
+    private static void fitRect(Rect rect, int size) {
+        int w = rect.width();
+        if (size > w) {
+            int d1 = (size - w) / 2;
+            int d2 = size - w - d1;
+            rect.left -= d1;
+            rect.right += d2;
+        }
+
+        int h = rect.height();
+        if (size > h) {
+            int d1 = (size - h) / 2;
+            int d2 = size - h - d1;
+            rect.top -= d1;
+            rect.bottom += d2;
         }
     }
 
@@ -204,6 +240,14 @@ public class FontIconDrawable extends Drawable {
         }
     }
 
+    public int getFitWidth() {
+        return mFitWidth;
+    }
+
+    public void setFitWidth(int fitWidth) {
+        mFitWidth = fitWidth;
+    }
+
     @Override
     public void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
@@ -246,6 +290,7 @@ public class FontIconDrawable extends Drawable {
         ss.text = getText();
         ss.textColor = getTextColorStateList();
         ss.textSize = getTextSize();
+        ss.fitWidth = getFitWidth();
 
         return ss;
     }
@@ -260,6 +305,7 @@ public class FontIconDrawable extends Drawable {
                 setText(ss.text);
                 setTextColorStateList(ss.textColor);
                 setTextSize(ss.textSize);
+                setFitWidth(ss.fitWidth);
             } finally {
                 mRestoring = false;
             }
@@ -272,6 +318,7 @@ public class FontIconDrawable extends Drawable {
         String text;
         ColorStateList textColor;
         float textSize;
+        int fitWidth;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -284,6 +331,7 @@ public class FontIconDrawable extends Drawable {
             out.writeString(text);
             out.writeParcelable(textColor, flags);
             out.writeFloat(textSize);
+            out.writeInt(fitWidth);
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
@@ -302,6 +350,7 @@ public class FontIconDrawable extends Drawable {
             text = in.readString();
             textColor = in.readParcelable(null);
             textSize = in.readFloat();
+            fitWidth = in.readInt();
         }
     }
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-icon
-        xmlns:android="http://schemas.android.com/apk/res-auto"
-        android:text="@string/ic_scaleup"
-        android:textSize="@dimen/ab_icon_size"
-        android:textColor="@color/pressed_menu"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:text="@string/ic_scaleup"
+        app:textSize="@dimen/ab_icon_size"
+        app:textColor="@color/pressed_menu"
+        app:fitting="match_text_size"
         />
