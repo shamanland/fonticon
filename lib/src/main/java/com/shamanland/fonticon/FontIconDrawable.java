@@ -93,6 +93,10 @@ public class FontIconDrawable extends Drawable {
         try {
             mText = a.getString(R.styleable.FontIconDrawable_text);
             mTextColor = a.getColorStateList(R.styleable.FontIconDrawable_textColor);
+            if (mTextColor == null) {
+                mTextColor = ColorStateList.valueOf(0);
+            }
+
             mTextSize = a.getDimension(R.styleable.FontIconDrawable_textSize, 9f);
         } finally {
             a.recycle();
@@ -217,6 +221,9 @@ public class FontIconDrawable extends Drawable {
 
     public void setTextColorStateList(ColorStateList color) {
         mTextColor = color;
+        if (mTextColor == null) {
+            mTextColor = ColorStateList.valueOf(0);
+        }
 
         if (!mRestoring) {
             updatePaint();
