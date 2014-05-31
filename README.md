@@ -17,7 +17,7 @@ Gradle dependency
     }
 
     dependencies {
-        compile 'com.shamanland:fonticon:0.1.3'
+        compile 'com.shamanland:fonticon:0.1.6'
     }
 
 Usage
