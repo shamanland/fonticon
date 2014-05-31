@@ -92,6 +92,10 @@ public class FontIconDrawable extends Drawable {
 
         try {
             mText = a.getString(R.styleable.FontIconDrawable_text);
+            if (mText == null) {
+                mText = "";
+            }
+
             mTextColor = a.getColorStateList(R.styleable.FontIconDrawable_textColor);
             if (mTextColor == null) {
                 mTextColor = ColorStateList.valueOf(0);
