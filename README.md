@@ -10,11 +10,21 @@ Look this [example app][2]
 Gradle dependency
 ----
 
+Repository:
+
     repositories {
         maven {
-            url 'http://repo.shamanland.com'
+            url 'https://oss.sonatype.org/content/groups/public'
         }
     }
+
+Snapshot dependency:
+
+    dependencies {
+        compile 'com.shamanland:fonticon:0.1.6-SNAPSHOT'
+    }
+
+Release dependency:
 
     dependencies {
         compile 'com.shamanland:fonticon:0.1.6'
