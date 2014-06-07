@@ -10,7 +10,17 @@ Look this [example app][2]
 Gradle dependency
 ----
 
-Repository:
+Release dependency:
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'com.shamanland:fonticon:0.1.6'
+    }
+
+Snapshot dependency:
 
     repositories {
         maven {
@@ -18,16 +28,8 @@ Repository:
         }
     }
 
-Snapshot dependency:
-
     dependencies {
         compile 'com.shamanland:fonticon:0.1.6-SNAPSHOT'
-    }
-
-Release dependency:
-
-    dependencies {
-        compile 'com.shamanland:fonticon:0.1.6'
     }
 
 Usage
