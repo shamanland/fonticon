@@ -1,11 +1,27 @@
 FontIcon Library
 ====
 
-Android FontIcon is simple library which use font-based icons in Android.
+FontIcon is simple library which use font-based icons in Android.
 
-Permament link to [project's page][1].
+Links
+----
 
-Look this [example app][2]
+- [Project page][1]
+- [Example video][2]
+
+Pros and cons
+----
+
+**Advantages**
+
+- Single ``.ttf`` file instead of lot of bitmaps for different densities (mdpi, hdpi, xhdpi, etc.)
+- Scalable vector graphics instead of raster images
+- Possibility to use any color for icon in run-time
+- Possibility to use any graphics effect which is available for TextView
+
+**Disadvantages**
+
+- Not easy to add additional icons
 
 Gradle dependency
 ----
@@ -112,7 +128,6 @@ Tools
 ----
 
 [FontIcon-Prepare][3] - prepares web fonts to be used with this library
-
 
 [1]: http://blog.shamanland.com/p/android-fonticon-library.html
 [2]: https://docs.google.com/file/d/0Bwh0SNLPmjQBbXJVd3c3S2hfVTg/preview
