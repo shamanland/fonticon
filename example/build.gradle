@@ -3,7 +3,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.1'
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         minSdkVersion 7
@@ -14,6 +14,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile 'com.android.support:appcompat-v7:19.1.0'
     compile project(':lib')
 }
