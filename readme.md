@@ -1,11 +1,34 @@
 FontIcon Library
 ====
 
-Android FontIcon is simple library which use font-based icons in Android.
+FontIcon is simple library which use font-based icons in Android.
 
-Permament link to [project's page][1].
+Links
+----
 
-Look this [example app][2]
+- [Project page][1]
+- [Example video][2]
+
+Get demo on Google Play
+----
+
+<a href="https://play.google.com/store/apps/details?id=com.shamanland.fonticon.example">
+<img alt="Get it on Google Play" src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
+
+Pros and cons
+----
+
+**Advantages**
+
+- Single ``.ttf`` file instead of lot of bitmaps for different densities (mdpi, hdpi, xhdpi, etc.)
+- Scalable vector graphics instead of raster images
+- Possibility to use any color for icon in run-time
+- Possibility to use any graphics effect which is available for TextView
+
+**Disadvantages**
+
+- Not easy to add additional icons
 
 Gradle dependency
 ----
@@ -113,6 +136,22 @@ Tools
 
 [FontIcon-Prepare][3] - prepares web fonts to be used with this library
 
+License
+--------
+
+    Copyright 2014 ShamanLand.Com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 [1]: http://blog.shamanland.com/p/android-fonticon-library.html
 [2]: https://docs.google.com/file/d/0Bwh0SNLPmjQBbXJVd3c3S2hfVTg/preview
