@@ -1,9 +1,11 @@
 package com.shamanland.fonticon;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
@@ -81,6 +83,22 @@ public class CompoundDrawables {
         Drawable[] drawables = view.getCompoundDrawables();
         if (drawables != null) {
             view.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void updateRelative(TextView view) {
+        if (view == null) {
+            if (SNAPSHOT) {
+                Log.e(FontIconView.class.getSimpleName(), "updateRelative: view is null");
+            }
+
+            return;
+        }
+
+        Drawable[] drawables = view.getCompoundDrawablesRelative();
+        if (drawables != null) {
+            view.setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
         }
     }
 }
