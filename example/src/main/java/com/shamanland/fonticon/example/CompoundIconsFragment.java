@@ -2,6 +2,7 @@ package com.shamanland.fonticon.example;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,13 +27,26 @@ public class CompoundIconsFragment extends ContentFragment {
 
         final FontIconTextView tv = (FontIconTextView) result.findViewById(R.id.example_text);
 
-        // left, top, right, bottom
-        final Drawable[] drawables = tv.getCompoundDrawables();
+        final Drawable[] drawables;
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            // left, top, right, bottom
+            drawables = tv.getCompoundDrawables();
+        } else {
+            // start, top, end, bottom
+            drawables = tv.getCompoundDrawablesRelative();
+        }
+
         mIcon = (FontIconDrawable) drawables[0];
 
         if (state != null) {
             mIcon.onRestoreInstanceState(state.getParcelable("icon"));
-            tv.updateCompoundDrawables();
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                tv.updateCompoundDrawables();
+            } else {
+                tv.updateCompoundDrawablesRelative();
+            }
 
             mColorIndex = state.getInt("color.index");
         }
@@ -46,7 +60,11 @@ public class CompoundIconsFragment extends ContentFragment {
                 mIcon.setTextColor(sColors[mColorIndex]);
 
                 // use FontIconTextView method
-                tv.updateCompoundDrawables();
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    tv.updateCompoundDrawables();
+                } else {
+                    tv.updateCompoundDrawablesRelative();
+                }
 
                 // or CompoundDrawables.update(TextView) if you don't want to cast FontIconTextView
 

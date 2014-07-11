@@ -5,6 +5,8 @@
         <attr name="iconTop" format="reference"/>
         <attr name="iconRight" format="reference"/>
         <attr name="iconBottom" format="reference"/>
+        <attr name="iconStart" format="reference"/>
+        <attr name="iconEnd" format="reference"/>
     </declare-styleable>
     <declare-styleable name="FontIconDrawable">
         <attr name="text" format="string|reference"/>
