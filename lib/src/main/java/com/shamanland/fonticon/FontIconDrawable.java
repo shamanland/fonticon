@@ -1,7 +1,7 @@
 package com.shamanland.fonticon;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Canvas;
@@ -37,8 +37,8 @@ public class FontIconDrawable extends Drawable {
     private boolean mRestoring;
     private boolean mBoundsChanged;
 
-    public static FontIconDrawable inflate(Resources resources, int xmlId) {
-        XmlResourceParser parser = resources.getXml(xmlId);
+    public static FontIconDrawable inflate(Context context, int xmlId) {
+        XmlResourceParser parser = context.getResources().getXml(xmlId);
         if (parser == null) {
             throw new InflateException();
         }
@@ -54,7 +54,7 @@ public class FontIconDrawable extends Drawable {
 
                 if ("font-icon".equals(name)) {
                     FontIconDrawable result = new FontIconDrawable();
-                    result.inflate(resources, parser, Xml.asAttributeSet(parser));
+                    result.inflate(context, Xml.asAttributeSet(parser));
                     return result;
                 } else {
                     throw new InflateException(name);
@@ -79,11 +79,8 @@ public class FontIconDrawable extends Drawable {
         mPaint.setTextAlign(Paint.Align.LEFT);
     }
 
-    @Override
-    public void inflate(Resources r, XmlPullParser parser, AttributeSet attrs) throws XmlPullParserException, IOException {
-        super.inflate(r, parser, attrs);
-
-        TypedArray a = r.obtainAttributes(attrs, R.styleable.FontIconDrawable);
+    public void inflate(Context context, AttributeSet attrs) throws XmlPullParserException, IOException {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FontIconDrawable);
         if (a == null) {
             if (SNAPSHOT) {
                 Log.w(FontIconDrawable.class.getSimpleName(), "inflate failed: r.obtainAttributes() returns null");

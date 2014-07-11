@@ -88,7 +88,7 @@ public class CompoundIconsFragment extends ContentFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.compound, menu);
 
-        menu.findItem(R.id.action_like).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_like));
-        menu.findItem(R.id.action_group).setIcon(FontIconDrawable.inflate(getResources(), R.xml.ic_ab_group));
+        menu.findItem(R.id.action_like).setIcon(FontIconDrawable.inflate(getContext(), R.xml.ic_ab_like));
+        menu.findItem(R.id.action_group).setIcon(FontIconDrawable.inflate(getContext(), R.xml.ic_ab_group));
     }
 }

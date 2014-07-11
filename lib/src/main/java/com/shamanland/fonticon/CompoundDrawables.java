@@ -58,7 +58,7 @@ public class CompoundDrawables {
 
         for (int i = 0; i < 4; ++i) {
             if (ids[i] != 0) {
-                compound[i] = FontIconDrawable.inflate(context.getResources(), ids[i]);
+                compound[i] = FontIconDrawable.inflate(context, ids[i]);
                 update = true;
             }
         }
