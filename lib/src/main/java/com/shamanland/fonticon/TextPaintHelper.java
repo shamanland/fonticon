@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 
+import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+
 class TextPaintHelper {
     private static final Field sShadowColor;
     private static final Field sShadowRadius;
@@ -36,7 +38,7 @@ class TextPaintHelper {
                 return ((Integer) result);
             }
         } catch (Throwable ex) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.e(TextPaintHelper.class.getSimpleName(), field.getName(), ex);
             }
         }
@@ -51,7 +53,7 @@ class TextPaintHelper {
                 return ((Float) result);
             }
         } catch (Throwable ex) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.e(TextPaintHelper.class.getSimpleName(), field.getName(), ex);
             }
         }

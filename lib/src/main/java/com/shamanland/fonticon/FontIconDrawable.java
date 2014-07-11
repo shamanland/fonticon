@@ -25,6 +25,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
+import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+
 public class FontIconDrawable extends Drawable {
     private String mText;
     private ColorStateList mTextColor;
@@ -83,7 +85,7 @@ public class FontIconDrawable extends Drawable {
 
         TypedArray a = r.obtainAttributes(attrs, R.styleable.FontIconDrawable);
         if (a == null) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.w(FontIconDrawable.class.getSimpleName(), "inflate failed: r.obtainAttributes() returns null");
             }
 

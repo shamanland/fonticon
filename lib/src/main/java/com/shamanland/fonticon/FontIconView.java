@@ -12,6 +12,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.CheckedTextView;
 
+import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+
 public class FontIconView extends CheckedTextView {
     private boolean mOverridePressed;
     private int mPressedGlowColor;
@@ -49,7 +51,7 @@ public class FontIconView extends CheckedTextView {
     private boolean init(Context context, AttributeSet attrs) {
         Resources.Theme theme = context.getTheme();
         if (theme == null) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: context.getTheme() returns null");
             }
 
@@ -58,7 +60,7 @@ public class FontIconView extends CheckedTextView {
 
         TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.FontIconView, 0, 0);
         if (a == null) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes() returns null");
             }
 
