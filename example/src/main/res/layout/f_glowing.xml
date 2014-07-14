@@ -83,7 +83,7 @@
             android:textColor="@color/selector_lamp"
             android:clickable="true"
             app:autoMirrored="true"
-            app:needMirroring="true"
+            app:needMirroring="@bool/layout_direction_rtl"
             app:overridePressed="true"
             app:pressedGlowColor="@color/yellow"
             app:pressedGlowRadius="@dimen/icon_glow_radius"

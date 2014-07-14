@@ -4,4 +4,6 @@
         app:text="@string/ic_no"
         app:textSize="@dimen/ab_icon_size"
         app:textColor="@color/red_221"
+        app:autoMirrored="true"
+        app:needMirroring="@bool/layout_direction_rtl"
         />
