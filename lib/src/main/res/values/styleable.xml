@@ -5,14 +5,18 @@
         <attr name="iconTop" format="reference"/>
         <attr name="iconRight" format="reference"/>
         <attr name="iconBottom" format="reference"/>
+        <attr name="iconStart" format="reference"/>
+        <attr name="iconEnd" format="reference"/>
     </declare-styleable>
     <declare-styleable name="FontIconDrawable">
         <attr name="text" format="string|reference"/>
         <attr name="textColor" format="color|reference"/>
         <attr name="textSize" format="dimension|reference"/>
+        <attr name="autoMirrored" format="boolean|reference"/>
+        <attr name="needMirroring" format="boolean|reference"/>
     </declare-styleable>
     <declare-styleable name="FontIconView">
-        <attr name="overridePressed" format="boolean"/>
+        <attr name="overridePressed" format="boolean|reference"/>
         <attr name="pressedGlowColor" format="color|reference"/>
         <attr name="pressedGlowRadius" format="dimension|reference"/>
     </declare-styleable>

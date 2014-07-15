@@ -1,6 +1,8 @@
 package com.shamanland.fonticon;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ToggleButton;
 
@@ -27,5 +29,10 @@ public class FontIconToggleButton extends ToggleButton {
 
     public void updateCompoundDrawables() {
         CompoundDrawables.update(this);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public void updateCompoundDrawablesRelative() {
+        CompoundDrawables.updateRelative(this);
     }
 }

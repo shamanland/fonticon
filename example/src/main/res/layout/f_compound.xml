@@ -6,7 +6,9 @@
         android:orientation="vertical"
         android:gravity="center"
         android:paddingLeft="@dimen/wide_padding"
+        android:paddingStart="@dimen/wide_padding"
         android:paddingRight="@dimen/wide_padding"
+        android:paddingEnd="@dimen/wide_padding"
         >
 
     <com.shamanland.fonticon.FontIconTextView
@@ -16,6 +18,7 @@
             android:text="@string/question"
             android:drawablePadding="@dimen/thin_padding"
             app:iconLeft="@xml/ic_android"
+            app:iconStart="@xml/ic_android"
             />
 
     <LinearLayout
@@ -31,6 +34,7 @@
                 android:layout_weight="1"
                 android:text="@android:string/yes"
                 app:iconLeft="@xml/ic_button_yes"
+                app:iconStart="@xml/ic_button_yes"
                 />
 
         <com.shamanland.fonticon.FontIconButton
@@ -40,6 +44,7 @@
                 android:layout_weight="1"
                 android:text="@android:string/no"
                 app:iconLeft="@xml/ic_button_no"
+                app:iconStart="@xml/ic_button_no"
                 />
     </LinearLayout>
 </LinearLayout>

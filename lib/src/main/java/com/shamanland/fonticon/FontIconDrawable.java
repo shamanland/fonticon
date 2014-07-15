@@ -1,7 +1,8 @@
 package com.shamanland.fonticon;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Canvas;
@@ -10,10 +11,12 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.LayoutDirection;
 import android.util.Log;
 import android.util.Xml;
 import android.view.AbsSavedState;
@@ -24,19 +27,26 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
+
+import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
 
 public class FontIconDrawable extends Drawable {
+    private static final String LOG_TAG = FontIconDrawable.class.getSimpleName();
+
     private String mText;
     private ColorStateList mTextColor;
     private float mTextSize;
+    private boolean mAutoMirrored;
+    private boolean mNeedMirroring;
 
     private TextPaint mPaint;
     private Rect mRect;
     private boolean mRestoring;
     private boolean mBoundsChanged;
 
-    public static FontIconDrawable inflate(Resources resources, int xmlId) {
-        XmlResourceParser parser = resources.getXml(xmlId);
+    public static FontIconDrawable inflate(Context context, int xmlId) {
+        XmlResourceParser parser = context.getResources().getXml(xmlId);
         if (parser == null) {
             throw new InflateException();
         }
@@ -52,7 +62,7 @@ public class FontIconDrawable extends Drawable {
 
                 if ("font-icon".equals(name)) {
                     FontIconDrawable result = new FontIconDrawable();
-                    result.inflate(resources, parser, Xml.asAttributeSet(parser));
+                    result.inflate(context, Xml.asAttributeSet(parser));
                     return result;
                 } else {
                     throw new InflateException(name);
@@ -77,13 +87,10 @@ public class FontIconDrawable extends Drawable {
         mPaint.setTextAlign(Paint.Align.LEFT);
     }
 
-    @Override
-    public void inflate(Resources r, XmlPullParser parser, AttributeSet attrs) throws XmlPullParserException, IOException {
-        super.inflate(r, parser, attrs);
-
-        TypedArray a = r.obtainAttributes(attrs, R.styleable.FontIconDrawable);
+    public void inflate(Context context, AttributeSet attrs) throws XmlPullParserException, IOException {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FontIconDrawable);
         if (a == null) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.w(FontIconDrawable.class.getSimpleName(), "inflate failed: r.obtainAttributes() returns null");
             }
 
@@ -102,6 +109,9 @@ public class FontIconDrawable extends Drawable {
             }
 
             mTextSize = a.getDimension(R.styleable.FontIconDrawable_textSize, 9f);
+
+            mAutoMirrored = a.getBoolean(R.styleable.FontIconDrawable_autoMirrored, false);
+            mNeedMirroring = a.getBoolean(R.styleable.FontIconDrawable_needMirroring, false);
         } finally {
             a.recycle();
         }
@@ -179,6 +189,7 @@ public class FontIconDrawable extends Drawable {
         return updatePaintColor(state);
     }
 
+    @SuppressWarnings("unused")
     public TextPaint getPaint() {
         return mPaint;
     }
@@ -234,6 +245,25 @@ public class FontIconDrawable extends Drawable {
         }
     }
 
+    public boolean isAutoMirrored() {
+        return mAutoMirrored;
+    }
+
+    public void setAutoMirrored(boolean autoMirrored) {
+        mAutoMirrored = autoMirrored;
+    }
+
+    @Deprecated
+    public boolean isNeedMirroring() {
+        return mNeedMirroring;
+    }
+
+    @Deprecated
+    @SuppressWarnings("unused")
+    public void setNeedMirroring(boolean needMirroring) {
+        mNeedMirroring = needMirroring;
+    }
+
     @Override
     public void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
@@ -265,9 +295,31 @@ public class FontIconDrawable extends Drawable {
         return mRect.height();
     }
 
+    protected boolean needMirroring() {
+        //noinspection SimplifiableIfStatement
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            //noinspection deprecation
+            return isNeedMirroring();
+        } else {
+            return isAutoMirrored() && MethodGetLayoutDirection.invoke(this) == LayoutDirection.RTL;
+        }
+    }
+
     @Override
     public void draw(Canvas canvas) {
+        final boolean needMirroring = needMirroring();
+
+        if (needMirroring) {
+            canvas.save();
+            canvas.translate(mRect.right - mRect.left, 0);
+            canvas.scale(-1.0f, 1.0f);
+        }
+
         canvas.drawText(mText, -mRect.left, -mRect.top, mPaint);
+
+        if (needMirroring) {
+            canvas.restore();
+        }
     }
 
     public Parcelable onSaveInstanceState() {
@@ -276,6 +328,9 @@ public class FontIconDrawable extends Drawable {
         ss.text = getText();
         ss.textColor = getTextColorStateList();
         ss.textSize = getTextSize();
+        ss.autoMirrored = isAutoMirrored();
+        //noinspection deprecation
+        ss.needMirroring = isNeedMirroring();
 
         return ss;
     }
@@ -290,6 +345,9 @@ public class FontIconDrawable extends Drawable {
                 setText(ss.text);
                 setTextColorStateList(ss.textColor);
                 setTextSize(ss.textSize);
+                setAutoMirrored(ss.autoMirrored);
+                //noinspection deprecation
+                setNeedMirroring(ss.needMirroring);
             } finally {
                 mRestoring = false;
             }
@@ -302,18 +360,22 @@ public class FontIconDrawable extends Drawable {
         String text;
         ColorStateList textColor;
         float textSize;
+        boolean autoMirrored;
+        boolean needMirroring;
 
         public SavedState(Parcelable superState) {
             super(superState);
         }
 
         @Override
-        public void writeToParcel(Parcel out, int flags) {
+        public void writeToParcel(@SuppressWarnings("NullableProblems") Parcel out, int flags) {
             super.writeToParcel(out, flags);
 
             out.writeString(text);
             out.writeParcelable(textColor, flags);
             out.writeFloat(textSize);
+            out.writeInt(autoMirrored ? 1 : 0);
+            out.writeInt(needMirroring ? 1 : 0);
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
@@ -332,6 +394,40 @@ public class FontIconDrawable extends Drawable {
             text = in.readString();
             textColor = in.readParcelable(null);
             textSize = in.readFloat();
+            autoMirrored = in.readInt() == 1;
+            needMirroring = in.readInt() == 1;
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    static class MethodGetLayoutDirection {
+        static Method sMethod;
+
+        static {
+            try {
+                sMethod = Drawable.class.getDeclaredMethod("getLayoutDirection");
+            } catch (Throwable ex) {
+                if (SNAPSHOT) {
+                    Log.w(LOG_TAG, ex);
+                }
+            }
+        }
+
+        static int invoke(Drawable drawable) {
+            if (sMethod != null) {
+                try {
+                    Object result = sMethod.invoke(drawable);
+                    if (result instanceof Integer) {
+                        return (Integer) result;
+                    }
+                } catch (Throwable ex) {
+                    if (SNAPSHOT) {
+                        Log.w(LOG_TAG, ex);
+                    }
+                }
+            }
+
+            return LayoutDirection.LTR;
         }
     }
 }

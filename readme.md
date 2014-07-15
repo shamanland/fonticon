@@ -1,6 +1,8 @@
 FontIcon Library
 ====
 
+[![Build Status](https://travis-ci.org/shamanland/fonticon.svg?branch=snapshot)](https://travis-ci.org/shamanland/fonticon)
+
 FontIcon is simple library which use font-based icons in Android.
 
 Links
@@ -153,7 +155,7 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[1]: http://blog.shamanland.com/p/android-fonticon-library.html
+[1]: http://shamanland.github.io/fonticon
 [2]: https://docs.google.com/file/d/0Bwh0SNLPmjQBbXJVd3c3S2hfVTg/preview
 [3]: http://github.com/shamanland/fonticon-prepare/
 [4]: http://fontastic.me/howto

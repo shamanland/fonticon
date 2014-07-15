@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Parcel;
@@ -12,7 +13,11 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.CheckedTextView;
 
+import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+
 public class FontIconView extends CheckedTextView {
+    private static int[] sAttrs;
+
     private boolean mOverridePressed;
     private int mPressedGlowColor;
     private float mPressedGlowRadius;
@@ -22,7 +27,26 @@ public class FontIconView extends CheckedTextView {
     private float mPressedOldShadowDx;
     private float mPressedOldShadowDy;
 
+    private boolean mAutoMirrored;
+    private boolean mNeedMirroring;
+
     private final Runnable mOldValuesSaver;
+
+    public boolean isAutoMirrored() {
+        return mAutoMirrored;
+    }
+
+    public void setAutoMirrored(boolean autoMirrored) {
+        mAutoMirrored = autoMirrored;
+    }
+
+    public boolean isNeedMirroring() {
+        return mNeedMirroring;
+    }
+
+    public void setNeedMirroring(boolean needMirroring) {
+        mNeedMirroring = needMirroring;
+    }
 
     public FontIconView(Context context) {
         super(context);
@@ -49,7 +73,7 @@ public class FontIconView extends CheckedTextView {
     private boolean init(Context context, AttributeSet attrs) {
         Resources.Theme theme = context.getTheme();
         if (theme == null) {
-            if (BuildConfig.DEBUG) {
+            if (SNAPSHOT) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: context.getTheme() returns null");
             }
 
@@ -58,8 +82,8 @@ public class FontIconView extends CheckedTextView {
 
         TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.FontIconView, 0, 0);
         if (a == null) {
-            if (BuildConfig.DEBUG) {
-                Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes() returns null");
+            if (SNAPSHOT) {
+                Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes(FontIconView) returns null");
             }
 
             return false;
@@ -69,6 +93,22 @@ public class FontIconView extends CheckedTextView {
             mOverridePressed = a.getBoolean(R.styleable.FontIconView_overridePressed, false);
             mPressedGlowColor = a.getColor(R.styleable.FontIconView_pressedGlowColor, Color.TRANSPARENT);
             mPressedGlowRadius = a.getDimension(R.styleable.FontIconView_pressedGlowRadius, 0);
+        } finally {
+            a.recycle();
+        }
+
+        a = theme.obtainStyledAttributes(attrs, R.styleable.FontIconDrawable, 0, 0);
+        if (a == null) {
+            if (SNAPSHOT) {
+                Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes(FontIconDrawable) returns null");
+            }
+
+            return false;
+        }
+
+        try {
+            mAutoMirrored = a.getBoolean(R.styleable.FontIconDrawable_autoMirrored, false);
+            mNeedMirroring = a.getBoolean(R.styleable.FontIconDrawable_needMirroring, false);
         } finally {
             a.recycle();
         }
@@ -121,6 +161,33 @@ public class FontIconView extends CheckedTextView {
         mPressedOldShadowDy = getShadowDy();
     }
 
+    protected boolean needMirroring() {
+        //noinspection SimplifiableIfStatement
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            //noinspection deprecation
+            return isNeedMirroring();
+        } else {
+            return isAutoMirrored() && getLayoutDirection() == LAYOUT_DIRECTION_RTL;
+        }
+    }
+
+    @Override
+    protected void onDraw(@SuppressWarnings("NullableProblems") Canvas canvas) {
+        final boolean needMirroring = needMirroring();
+
+        if (needMirroring) {
+            canvas.save();
+            canvas.translate(canvas.getWidth(), 0);
+            canvas.scale(-1.0f, 1.0f);
+        }
+
+        super.onDraw(canvas);
+
+        if (needMirroring) {
+            canvas.restore();
+        }
+    }
+
     @Override
     protected void dispatchSetPressed(boolean pressed) {
         super.dispatchSetPressed(pressed);
@@ -147,10 +214,7 @@ public class FontIconView extends CheckedTextView {
     public Parcelable onSaveInstanceState() {
         // Force our ancestor class to save its state
         setFreezesText(true);
-        Parcelable superState = super.onSaveInstanceState();
-
-        SavedState ss = new SavedState(superState);
-
+        SavedState ss = new SavedState(super.onSaveInstanceState());
         ss.checked = isChecked();
         return ss;
     }
@@ -172,7 +236,7 @@ public class FontIconView extends CheckedTextView {
         }
 
         @Override
-        public void writeToParcel(Parcel out, int flags) {
+        public void writeToParcel(@SuppressWarnings("NullableProblems") Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeValue(checked);
         }

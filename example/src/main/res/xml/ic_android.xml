@@ -4,4 +4,6 @@
         app:text="@string/ic_android"
         app:textSize="@dimen/big_icon_size"
         app:textColor="@color/green_170"
+        app:autoMirrored="true"
+        app:needMirroring="@bool/layout_direction_rtl"
         />

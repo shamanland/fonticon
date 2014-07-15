@@ -4,4 +4,6 @@
         app:text="@string/ic_scaleup"
         app:textSize="@dimen/ab_icon_size"
         app:textColor="@color/pressed_menu"
+        app:autoMirrored="true"
+        app:needMirroring="@bool/layout_direction_rtl"
         />

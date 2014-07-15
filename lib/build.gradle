@@ -1,14 +1,5 @@
-apply plugin: 'android-sdk-manager'
-apply plugin: 'android-library'
-
-android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
-
-    defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 19
-    }
+dependencies {
+    // none
 }
 
-apply from: 'https://raw.github.com/shamanland/gradle-mvn-push/master/gradle-mvn-push.gradle'
+apply from: GRADLE_MVN_PUSH

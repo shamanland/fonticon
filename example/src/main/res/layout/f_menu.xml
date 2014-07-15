@@ -17,7 +17,9 @@
             android:textColor="@color/pressed_menu"
             android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
+            android:textAlignment="viewStart"
             app:iconLeft="@xml/ic_scaleup"
+            app:iconStart="@xml/ic_scaleup"
             />
 
     <com.shamanland.fonticon.FontIconTextView
@@ -30,7 +32,9 @@
             android:textColor="@color/pressed_menu"
             android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
+            android:textAlignment="viewStart"
             app:iconLeft="@xml/ic_fire"
+            app:iconStart="@xml/ic_fire"
             />
 
     <com.shamanland.fonticon.FontIconTextView
@@ -43,6 +47,8 @@
             android:textColor="@color/pressed_menu"
             android:background="@drawable/pressed_menu_background"
             android:drawablePadding="@dimen/middle_padding"
+            android:textAlignment="viewStart"
             app:iconLeft="@xml/ic_compound"
+            app:iconStart="@xml/ic_compound"
             />
 </LinearLayout>
