@@ -84,9 +84,16 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
 
     Drawable icon = FontIconDrawable.inflate(getResources(), R.xml.ic_android);
 
-**5. Use your FontIconDrawable as compound for TextView or Button (in res/layout with custom class)**
+**5. Use your FontIconDrawable as compound for TextView, EditText or Button (in res/layout with custom class)**
 
     <com.shamanland.fonticon.FontIconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dummy text"
+            app:iconLeft="@xml/ic_android"
+            />
+
+    <com.shamanland.fonticon.FontIconEditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dummy text"
