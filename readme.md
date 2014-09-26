@@ -1,7 +1,7 @@
 FontIcon Library
 ====
 
-[![Build Status](https://travis-ci.org/shamanland/fonticon.svg?branch=snapshot)](https://travis-ci.org/shamanland/fonticon)
+[![Build Status](https://travis-ci.org/shamanland/fonticon.svg?branch=release)](https://travis-ci.org/shamanland/fonticon)
 
 FontIcon is simple library which use font-based icons in Android.
 
@@ -35,26 +35,8 @@ Pros and cons
 Gradle dependency
 ----
 
-Release dependency:
-
-    repositories {
-        mavenCentral()
-    }
-
     dependencies {
-        compile 'com.shamanland:fonticon:0.1.6'
-    }
-
-Snapshot dependency:
-
-    repositories {
-        maven {
-            url 'https://oss.sonatype.org/content/groups/public'
-        }
-    }
-
-    dependencies {
-        compile 'com.shamanland:fonticon:0.1.6-SNAPSHOT'
+        compile 'com.shamanland:fonticon:0.1.8'
     }
 
 Usage
