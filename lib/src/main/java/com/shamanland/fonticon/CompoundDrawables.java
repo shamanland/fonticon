@@ -10,12 +10,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
 
-import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+import static com.shamanland.fonticon.BuildConfig.DEBUG;
 
 public class CompoundDrawables {
     public static boolean init(Context context, AttributeSet attrs, TextView view) {
         if (view == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.e(FontIconView.class.getSimpleName(), "init: view is null");
             }
 
@@ -24,7 +24,7 @@ public class CompoundDrawables {
 
         Resources.Theme theme = context.getTheme();
         if (theme == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconView.class.getSimpleName(), "init: context.getTheme() returns null");
             }
 
@@ -33,7 +33,7 @@ public class CompoundDrawables {
 
         TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.CompoundDrawables, 0, 0);
         if (a == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconView.class.getSimpleName(), "init: theme.obtainStyledAttributes() returns null");
             }
 
@@ -104,7 +104,7 @@ public class CompoundDrawables {
 
     public static void update(TextView view) {
         if (view == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.e(FontIconView.class.getSimpleName(), "update: view is null");
             }
 
@@ -120,7 +120,7 @@ public class CompoundDrawables {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static void updateRelative(TextView view) {
         if (view == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.e(FontIconView.class.getSimpleName(), "updateRelative: view is null");
             }
 

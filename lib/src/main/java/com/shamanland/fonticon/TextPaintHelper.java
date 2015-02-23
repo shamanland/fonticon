@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 
-import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+import static com.shamanland.fonticon.BuildConfig.DEBUG;
 
 class TextPaintHelper {
     private static final Field sShadowColor;
@@ -38,7 +38,7 @@ class TextPaintHelper {
                 return ((Integer) result);
             }
         } catch (Throwable ex) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.e(TextPaintHelper.class.getSimpleName(), field.getName(), ex);
             }
         }
@@ -53,7 +53,7 @@ class TextPaintHelper {
                 return ((Float) result);
             }
         } catch (Throwable ex) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.e(TextPaintHelper.class.getSimpleName(), field.getName(), ex);
             }
         }

@@ -1,70 +1,19 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.0'
-        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.10.1'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.0'
+        classpath 'com.android.tools.build:gradle:1.1.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-def isSnapshot() {
-    return VERSION_NAME.contains('SNAPSHOT')
-}
-
-def gradleMvnPush = new File(buildDir, 'gradle-mvn-push.gradle')
-if (!gradleMvnPush.exists()) {
-    buildDir.mkdirs()
-    ant.get(src: GRADLE_MVN_PUSH, dest: gradleMvnPush)
-}
-
-setProperty('GRADLE_MVN_PUSH', gradleMvnPush)
-
-subprojects {
-    group GROUP
-    version VERSION_NAME
-
-    apply plugin: 'android-sdk-manager'
-
-    if (name.startsWith('lib')) {
-        apply plugin: 'com.android.library'
-    } else {
-        apply plugin: 'com.android.application'
-    }
-
-    android {
-        compileSdkVersion COMPILE_SDK_VERSION as int
-        buildToolsVersion BUILD_TOOLS_VERSION
-
-        defaultConfig {
-            minSdkVersion MIN_SDK_VERSION as int
-            targetSdkVersion TARGET_SDK_VERSION as int
-            versionCode 1
-            versionName '1.0'
-
-            // workaround for https://code.google.com/p/android/issues/detail?id=52962
-            buildConfigField 'boolean', 'SNAPSHOT', isSnapshot().toString()
-        }
-
-        lintOptions {
-            abortOnError false
-        }
-    }
-
+allprojects {
     repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-
-    if (isSnapshot()) {
-        apply plugin: 'robolectric'
-
-        dependencies {
-            androidTestCompile 'junit:junit:4.10'
-            androidTestCompile 'org.robolectric:robolectric:2.3'
-            androidTestCompile 'com.squareup:fest-android:1.0.8'
-        }
+        jcenter()
     }
 }

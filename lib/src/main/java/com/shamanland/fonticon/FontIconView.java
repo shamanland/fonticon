@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.CheckedTextView;
 
-import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+import static com.shamanland.fonticon.BuildConfig.DEBUG;
 
 public class FontIconView extends CheckedTextView {
     private static int[] sAttrs;
@@ -73,7 +73,7 @@ public class FontIconView extends CheckedTextView {
     private boolean init(Context context, AttributeSet attrs) {
         Resources.Theme theme = context.getTheme();
         if (theme == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: context.getTheme() returns null");
             }
 
@@ -82,7 +82,7 @@ public class FontIconView extends CheckedTextView {
 
         TypedArray a = theme.obtainStyledAttributes(attrs, R.styleable.FontIconView, 0, 0);
         if (a == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes(FontIconView) returns null");
             }
 
@@ -99,7 +99,7 @@ public class FontIconView extends CheckedTextView {
 
         a = theme.obtainStyledAttributes(attrs, R.styleable.FontIconDrawable, 0, 0);
         if (a == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconView.class.getSimpleName(), "init failed: theme.obtainStyledAttributes(FontIconDrawable) returns null");
             }
 
