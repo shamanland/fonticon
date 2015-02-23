@@ -29,7 +29,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import static com.shamanland.fonticon.BuildConfig.SNAPSHOT;
+import static com.shamanland.fonticon.BuildConfig.DEBUG;
 
 public class FontIconDrawable extends Drawable {
     private static final String LOG_TAG = FontIconDrawable.class.getSimpleName();
@@ -90,7 +90,7 @@ public class FontIconDrawable extends Drawable {
     public void inflate(Context context, AttributeSet attrs) throws XmlPullParserException, IOException {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FontIconDrawable);
         if (a == null) {
-            if (SNAPSHOT) {
+            if (DEBUG) {
                 Log.w(FontIconDrawable.class.getSimpleName(), "inflate failed: r.obtainAttributes() returns null");
             }
 
@@ -407,7 +407,7 @@ public class FontIconDrawable extends Drawable {
             try {
                 sMethod = Drawable.class.getDeclaredMethod("getLayoutDirection");
             } catch (Throwable ex) {
-                if (SNAPSHOT) {
+                if (DEBUG) {
                     Log.w(LOG_TAG, ex);
                 }
             }
@@ -421,7 +421,7 @@ public class FontIconDrawable extends Drawable {
                         return (Integer) result;
                     }
                 } catch (Throwable ex) {
-                    if (SNAPSHOT) {
+                    if (DEBUG) {
                         Log.w(LOG_TAG, ex);
                     }
                 }
