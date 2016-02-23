@@ -16,7 +16,7 @@ Get demo on Google Play
 ----
 
 <a href="https://play.google.com/store/apps/details?id=com.shamanland.fonticon.example">
-<img alt="Get it on Google Play" src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+<img alt="Get it on Google Play" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBY096eE9PMmlKVEk" />
 </a>
 
 Pros and cons
@@ -38,7 +38,7 @@ Gradle dependency
 
 ```groovy
     dependencies {
-        compile 'com.shamanland:fonticon:0.1.8'
+        compile 'com.shamanland:fonticon:0.1.9'
     }
 ```
 
