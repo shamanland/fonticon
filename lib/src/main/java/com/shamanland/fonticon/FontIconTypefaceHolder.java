@@ -3,6 +3,8 @@ package com.shamanland.fonticon;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
+import java.io.File;
+
 public class FontIconTypefaceHolder {
     private static Typeface sTypeface;
 
@@ -14,7 +16,15 @@ public class FontIconTypefaceHolder {
         return sTypeface;
     }
 
+	public static void setTypeface(Typeface typeface) {
+        sTypeface = typeface;
+    }
+
     public static void init(AssetManager assets, String path) {
         sTypeface = Typeface.createFromAsset(assets, path);
+    }
+
+    public static void init(File file) {
+        sTypeface = Typeface.createFromFile(file);
     }
 }

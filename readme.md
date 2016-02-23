@@ -8,14 +8,15 @@ FontIcon is simple library which use font-based icons in Android.
 Links
 ----
 
-- [Project page][1]
+- [Project page][8]
 - [Example video][2]
+- [JavaDoc][1]
 
 Get demo on Google Play
 ----
 
 <a href="https://play.google.com/store/apps/details?id=com.shamanland.fonticon.example">
-<img alt="Get it on Google Play" src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+<img alt="Get it on Google Play" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBY096eE9PMmlKVEk" />
 </a>
 
 Pros and cons
@@ -35,9 +36,11 @@ Pros and cons
 Gradle dependency
 ----
 
+```groovy
     dependencies {
-        compile 'com.shamanland:fonticon:0.1.8'
+        compile 'com.shamanland:fonticon:0.1.9'
     }
+```
 
 Usage
 ----
@@ -54,6 +57,7 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
 
 [**res/xml/ic_android.xml**][6]
 
+```xml
     <?xml version="1.0" encoding="utf-8"?>
     <font-icon
             xmlns:android="http://schemas.android.com/apk/res-auto"
@@ -61,13 +65,17 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
             android:textSize="@dimen/big_icon_size"
             android:textColor="@color/green_170"
             />
+```
 
 **4. Inflate your FontIconDrawable in Java**
 
+```java
     Drawable icon = FontIconDrawable.inflate(getResources(), R.xml.ic_android);
+```
 
 **5. Use your FontIconDrawable as compound for TextView, EditText or Button (in res/layout with custom class)**
 
+```xml
     <com.shamanland.fonticon.FontIconTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,15 +96,19 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
             android:text="Dummy text"
             app:iconLeft="@xml/ic_button_yes"
             />
+```
 
 **6. Use your FontIconDrawable as compound for TextView (in Java-code with platform class)**
 
+```java
     Drawable icon = FontIconDrawable.inflate(getResources(), R.xml.ic_android);
     TextView tv = (TextView) result.findViewById(R.id.my_textview_or_button);
     tv.setCompoundDrawables(icon, null, null, null);
+```
 
 **7. Use FontIconView as single icon in your layout**
 
+```xml
     <com.shamanland.fonticon.FontIconView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,11 +116,13 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
             android:textSize="@dimen/icon_size"
             android:textColor="@color/icon_color"
             />
+```
 
 **8. Add glowing effect on touch for your FontIconView**
 
 [**res/layout/f_glowing.xml**][7]
 
+```xml
     <com.shamanland.fonticon.FontIconView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +135,7 @@ Read this [manual][5] for details. In case of fontastic use [this util][3].
             app:pressedGlowColor="@color/googleplus"
             app:pressedGlowRadius="@dimen/icon_glow_radius"
             />
+```
 
 Tools
 ----
@@ -151,3 +166,4 @@ License
 [5]: http://blog.shamanland.com/2013/11/how-to-use-icon-fonts-in-android.html
 [6]: http://github.com/shamanland/fonticon/blob/dev/app/src/main/res/xml/ic_android.xml
 [7]: http://github.com/shamanland/fonticon/blob/dev/app/src/main/res/layout/f_glowing.xml
+[8]: http://blog.shamanland.com/p/android-fonticon-library.html
