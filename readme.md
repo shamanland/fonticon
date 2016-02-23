@@ -16,7 +16,7 @@ Get demo on Google Play
 ----
 
 <a href="https://play.google.com/store/apps/details?id=com.shamanland.fonticon.example">
-<img alt="Get it on Google Play" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBY096eE9PMmlKVEk" />
+<img alt="Get it on Google Play" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBY096eE9PMmlKVEk" width="204" height="60"/>
 </a>
 
 Pros and cons
