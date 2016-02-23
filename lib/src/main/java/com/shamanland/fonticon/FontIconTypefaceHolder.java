@@ -16,6 +16,10 @@ public class FontIconTypefaceHolder {
         return sTypeface;
     }
 
+	public static void setTypeface(Typeface typeface) {
+        sTypeface = typeface;
+    }
+
     public static void init(AssetManager assets, String path) {
         sTypeface = Typeface.createFromAsset(assets, path);
     }
